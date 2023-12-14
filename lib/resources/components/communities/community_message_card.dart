@@ -52,8 +52,8 @@ class _CommunityMessageCardState extends State<CommunityMessageCard> {
                 margin: EdgeInsets.symmetric(
                     horizontal: mq.width * .04, vertical: mq.height * .01),
                 decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 221, 245, 255),
-                    border: Border.all(color: Colors.lightBlue),
+                    color: Colors.white,
+                    border: Border.all(color: Colors.grey.shade800),
                     //making borders curved
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(30),
@@ -94,7 +94,7 @@ class _CommunityMessageCardState extends State<CommunityMessageCard> {
             margin: const EdgeInsets.only(left: 20),
             child: Text(
                 '${widget.message.senderName} : ${MyDateUtil.getFormattedTime(context: context, time: widget.message.sent)}',
-                style: const TextStyle(fontSize: 13, color: Colors.black54)),
+                style: const TextStyle(fontSize: 13, color: Colors.white)),
           ),
         ),
       ],
@@ -140,8 +140,8 @@ class _CommunityMessageCardState extends State<CommunityMessageCard> {
                 margin: EdgeInsets.symmetric(
                     horizontal: mq.width * .04, vertical: mq.height * .01),
                 decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 218, 255, 176),
-                    border: Border.all(color: Colors.lightGreen),
+                    color: Colors.white,
+                    border: Border.all(color: Colors.grey.shade800),
                     //making borders curved
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(30),

@@ -132,6 +132,7 @@ class CommunityDetailResourcesState extends State<CommunityDetailResources> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
+              //style: ButtonStyle(iconColor: Colors.black),
             ),
             TextButton(
               child: const Text('Upload'),
@@ -149,6 +150,7 @@ class CommunityDetailResourcesState extends State<CommunityDetailResources> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: StreamBuilder(
         stream: _firestore
             .collection('communities')
@@ -166,21 +168,23 @@ class CommunityDetailResourcesState extends State<CommunityDetailResources> {
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
               final resource = snapshot.data!.docs[index].data();
-              return ListTile(
-                title: Text(resource['title'] ??
-                    'Resource $index'), // Use the title if available
-                subtitle: Text(resource['text']),
-                onTap: () {
-                  // Handle the resource item click
-                  // You can open or download the resource here
-                  
+              return Column(
+                children: [
+                  ListTile(
+                    title: Text(resource['title'] ??
+                        'Resource $index',style: TextStyle(color: Colors.white),), // Use the title if available
+                    subtitle: Text(resource['text'],style: const TextStyle(color: Colors.white),),
+                    onTap: () {
+                      // Handle the resource item click
+                      // You can open or download the resource here
+                      
         if (resource['type'] == 'jpg' ||
             resource['type'] == 'jpeg' ||
             resource['type'] == 'png') {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ImageViewer(resource['url'], resource['title']),
+                  builder: (context) => ImageViewer(resource['url'], resource['title']),
             ),
           );
         // } else if (resource['type'] == 'mp4') {
@@ -193,18 +197,24 @@ class CommunityDetailResourcesState extends State<CommunityDetailResources> {
         // } else {
           // Handle other resource types (e.g., PDFs)
         }
-                },
+                    },
+                  ),
+                  Divider(color: Colors.grey.shade800,
+                  thickness: 1,
+                  height: 0,)
+                ],
               );
             },
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
         onPressed: () {
           pickAndPreviewFile();
         },
         tooltip: 'Upload File',
-        child: const Icon(Icons.upload),
+        child: const Icon(Icons.upload, color: Colors.black,),
       ),
     );
   }

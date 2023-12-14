@@ -69,6 +69,7 @@ class _CommunityScreenFinalState extends State<CommunityScreenFinal> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.black,
       //floating button to add new user
 
       floatingActionButton: Padding(
@@ -77,7 +78,8 @@ class _CommunityScreenFinalState extends State<CommunityScreenFinal> {
             onPressed: () {
               _addCommunityDialog();
             },
-            child: const Icon(Icons.add_comment_rounded)),
+            backgroundColor: Colors.white,
+            child: const Icon(Icons.add_comment_rounded, color: Colors.black,)),
       ),
 
       //body
@@ -125,13 +127,21 @@ class _CommunityScreenFinalState extends State<CommunityScreenFinal> {
                         return ListView.builder(
                             itemCount:
                                 isSearching ? _searchList.length : _list.length,
-                            padding: EdgeInsets.only(top: mq.height * .01),
+                            //padding: EdgeInsets.only(top: mq.height * .01),
+                            
                             physics: const BouncingScrollPhysics(),
                             itemBuilder: (context, index) {
-                              return ChatCommunityCard(
-                                  user: isSearching
-                                      ? _searchList[index]
-                                      : _list[index]);
+                              return Column(
+                                children: [
+                                  ChatCommunityCard(
+                                      user: isSearching
+                                          ? _searchList[index]
+                                          : _list[index]),
+                                          Divider(color: Colors.grey.shade800,
+                                          height: 0,
+                                          thickness: 1,)
+                                ],
+                              );
                             });
                       } else {
                         return const Center(
@@ -165,9 +175,10 @@ class _CommunityScreenFinalState extends State<CommunityScreenFinal> {
           children: [
             Icon(
               Icons.person_add,
-              color: Colors.deepPurpleAccent,
+              color: Colors.black,
               size: 28,
             ),
+            SizedBox(width: 10,),
             Text('Add Community')
           ],
         ),
@@ -179,7 +190,7 @@ class _CommunityScreenFinalState extends State<CommunityScreenFinal> {
           decoration: InputDecoration(
               hintText: 'Community Name',
               prefixIcon:
-                  const Icon(Icons.email, color: Colors.deepPurpleAccent),
+                  const Icon(Icons.email, color: Colors.black),
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
         ),
@@ -194,7 +205,7 @@ class _CommunityScreenFinalState extends State<CommunityScreenFinal> {
               },
               child: const Text('Cancel',
                   style:
-                      TextStyle(color: Colors.deepPurpleAccent, fontSize: 16))),
+                      TextStyle(color: Colors.black, fontSize: 16))),
 
           //add button
           MaterialButton(
@@ -212,7 +223,7 @@ class _CommunityScreenFinalState extends State<CommunityScreenFinal> {
               },
               child: const Text(
                 'Add',
-                style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 16),
+                style: TextStyle(color: Colors.black, fontSize: 16),
               ))
         ],
       ),

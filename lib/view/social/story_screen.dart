@@ -45,9 +45,10 @@ class StoryScreenState extends State<StoryScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: TabBar(
         controller: _tabController,
-        indicatorColor: Colors.black,
+        indicatorColor: Colors.white,
         tabs: const [
           Tab(
             text: 'People',
@@ -56,7 +57,7 @@ class StoryScreenState extends State<StoryScreen>
             text: 'Communities',
           ),
         ],
-        labelColor: Colors.black, // Set the text color of the selected tab
+        labelColor: Colors.white, // Set the text color of the selected tab
         unselectedLabelColor:
             Colors.grey, // Set the text color of unselected tabs
       ),
@@ -78,7 +79,7 @@ class StoryScreenState extends State<StoryScreen>
           padding: EdgeInsets.all(16.0),
           child: Text(
             'People to Follow:',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
         Expanded(
@@ -142,8 +143,8 @@ class StoryScreenState extends State<StoryScreen>
                                     child: Icon(CupertinoIcons.person)),
                           ),
                         ),
-                        title: Text(person['name']),
-                        subtitle: Text(person['email']),
+                        title: Text(person['name'],style: TextStyle(color: Colors.white),),
+                        subtitle: Text(person['email'],style: TextStyle(color: Colors.white),),
                         trailing: ElevatedButton(
                           style: TextButton.styleFrom(
                               elevation: 4,
@@ -179,7 +180,7 @@ class StoryScreenState extends State<StoryScreen>
           padding: EdgeInsets.all(16.0),
           child: Text(
             'Communities to Join:',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
         Expanded(
@@ -242,8 +243,8 @@ class StoryScreenState extends State<StoryScreen>
                                     child: Icon(CupertinoIcons.person)),
                           ),
                         ),
-                        title: Text(page['name']),
-                        subtitle: Text(page['domain']),
+                        title: Text(page['name'], style: TextStyle(color: Colors.white),),
+                        subtitle: Text(page['domain'], style: TextStyle(color: Colors.white),),
                         trailing: ElevatedButton(
                           style: TextButton.styleFrom(
                               elevation: 4,

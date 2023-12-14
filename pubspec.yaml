@@ -56,7 +56,7 @@ dependencies:
   
   video_player: 
   async: ^2.8.1
-  firebase_messaging: ^14.6.4
+  firebase_messaging: ^14.7.6
   emoji_picker_flutter: ^1.6.1
   gallery_saver: ^2.3.2
 
@@ -81,6 +81,7 @@ dependencies:
   chewie: ^1.5.0
   carousel_slider: ^4.2.1
   # gradient_text:
+  flutter_notification_channel: 
   
 
 dev_dependencies:

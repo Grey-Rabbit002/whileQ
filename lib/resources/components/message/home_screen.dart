@@ -64,13 +64,15 @@ class _HomeScreenFinalState extends State<HomeScreenFinal> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.black,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: FloatingActionButton(
           onPressed: () {
             _addChatUserDialog();
           },
-          child: const Icon(Icons.add_comment_rounded),
+          backgroundColor: Colors.white,
+          child: const Icon(Icons.add_comment_rounded, color: Colors.black,),
         ),
       ),
       body: StreamBuilder(
@@ -119,8 +121,15 @@ class _HomeScreenFinalState extends State<HomeScreenFinal> {
                       userSnapshot.data!.data() as Map<String, dynamic>;
                   final chatUser = ChatUser.fromJson(userData);
 
-                  return ChatUserCard(
-                    user: isSearching ? _searchList[index] : chatUser,
+                  return Column(
+                    children: [
+                      ChatUserCard(
+                        user: isSearching ? _searchList[index] : chatUser,
+                      ),
+                      Divider(color: Colors.grey.shade800,
+                      thickness: 1,
+                      height: 0,)
+                    ],
                   );
                 },
               );
@@ -144,7 +153,7 @@ class _HomeScreenFinalState extends State<HomeScreenFinal> {
           children: [
             Icon(
               Icons.person_add,
-              color: Colors.blue,
+              color: Colors.black,
               size: 28,
             ),
             Text('  Add User'),
@@ -155,7 +164,7 @@ class _HomeScreenFinalState extends State<HomeScreenFinal> {
           onChanged: (value) => email = value,
           decoration: InputDecoration(
             hintText: 'Email Id',
-            prefixIcon: const Icon(Icons.email, color: Colors.blue),
+            prefixIcon: const Icon(Icons.email, color: Colors.black),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
           ),
         ),
@@ -165,13 +174,13 @@ class _HomeScreenFinalState extends State<HomeScreenFinal> {
               Navigator.pop(context);
             },
             child: const Text('Cancel',
-                style: TextStyle(color: Colors.blue, fontSize: 16)),
+                style: TextStyle(color: Colors.black, fontSize: 16)),
           ),
           MaterialButton(
             onPressed: () async {
               Navigator.pop(context);
               if (email.isNotEmpty) {
-                await APIs.addChatUser(email).then((value) {
+                await APIs.addChatUserdailog(email).then((value) {
                   if (!value) {
                     Dialogs.showSnackbar(context, 'User does not exist!');
                   }
@@ -180,7 +189,7 @@ class _HomeScreenFinalState extends State<HomeScreenFinal> {
             },
             child: const Text(
               'Add',
-              style: TextStyle(color: Colors.blue, fontSize: 16),
+              style: TextStyle(color: Colors.black, fontSize: 16),
             ),
           ),
         ],

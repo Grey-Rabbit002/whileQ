@@ -106,6 +106,7 @@ class OpportunitiesScreenState extends State<OpportunitiesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: StreamBuilder<QuerySnapshot>(
         stream: _firestore
             .collection('communities')
@@ -137,18 +138,26 @@ class OpportunitiesScreenState extends State<OpportunitiesScreen> {
                 id: data['id'],
               );
 
-              return ListTile(
-                title: Text(opportunity.name),
-                subtitle: Text(opportunity.description),
-                onTap: () {
-                  _showOpportunityDetails(opportunity);
-                },
+              return Column(
+                children: [
+                  ListTile(
+                    title: Text(opportunity.name, style: const TextStyle(color: Colors.white),),
+                    subtitle: Text(opportunity.description, style: const TextStyle(color: Colors.white),),
+                    onTap: () {
+                      _showOpportunityDetails(opportunity);
+                    },
+                  ),
+                  Divider(color: Colors.grey.shade800,
+                  thickness: 1,
+                  height: 0,)
+                ],
               );
             },
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
         onPressed: () {
           // Navigate to the screen where admins can add opportunities
           Navigator.push(
@@ -159,7 +168,7 @@ class OpportunitiesScreenState extends State<OpportunitiesScreen> {
                       )));
         },
         tooltip: 'Add Opportunity',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Colors.black,),
       ),
     );
   }

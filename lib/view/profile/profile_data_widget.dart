@@ -83,7 +83,7 @@ class _ProfileDataWidgetState extends State<ProfileDataWidget> {
                 },
                 child: Text(
                   'Followers  ${APIs.me.follower}',
-                  style: const TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.white),
                 ),
               )),
           Positioned(
@@ -100,7 +100,7 @@ class _ProfileDataWidgetState extends State<ProfileDataWidget> {
                 },
                 child: Text(
                   'Following  ${APIs.me.following}',
-                  style: const TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.white),
                 ),
               )),
           Positioned(
@@ -116,7 +116,7 @@ class _ProfileDataWidgetState extends State<ProfileDataWidget> {
                   },
                   icon: const Icon(
                     Icons.more_vert,
-                    color: Colors.black,
+                    color: Colors.white,
                   ))),
           Positioned(
             top: nh + mq.height / 6 + mq.width / 8,
@@ -134,12 +134,14 @@ class _ProfileDataWidgetState extends State<ProfileDataWidget> {
                     softWrap: true,
                     maxLines: 2,
                     style: const TextStyle(
+                      color: Colors.white,
                         fontSize: 25, fontWeight: FontWeight.w500),
                   ),
                   Text(APIs.me.about,
                       softWrap: true,
                       maxLines: 4,
                       style: const TextStyle(
+                        color: Colors.white,
                           fontSize: 15, fontWeight: FontWeight.w500))
                 ],
               ),

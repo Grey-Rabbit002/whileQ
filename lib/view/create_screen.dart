@@ -17,15 +17,15 @@ class CreateScreen extends river.ConsumerStatefulWidget {
 class _CreateScreenState extends river.ConsumerState<CreateScreen> {
   @override
   Widget build(BuildContext context) {
-    final currentTheme = ref.watch(themeNotifierProvider);
+    //final currentTheme = ref.watch(themeNotifierProvider);
     final provider = Provider.of<ReelController>(context, listen: false);
     final postProvider=Provider.of<PostProvider>(context, listen: false);
     return Padding(
-      padding: const EdgeInsets.only(top: 28.0),
+      padding: const EdgeInsets.only(top: 1),
       child: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-            color: currentTheme.primaryColor,
+            color: Colors.black,
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: Column(

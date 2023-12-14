@@ -45,11 +45,11 @@ class _CCommunityDetailScreenState extends State<CCommunityDetailScreen> {
       QuizScreen(user: widget.user,),
     ];
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
 
       /// APPBAR
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         automaticallyImplyLeading: false,
         title: GestureDetector(
           onTap: () {
@@ -71,7 +71,7 @@ class _CCommunityDetailScreenState extends State<CCommunityDetailScreen> {
             children: [
               IconButton(
                   onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.arrow_back, color: Colors.black)),
+                  icon: const Icon(Icons.arrow_back, color: Colors.white)),
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: CachedNetworkImage(
@@ -92,7 +92,7 @@ class _CCommunityDetailScreenState extends State<CCommunityDetailScreen> {
               ),
               Text(widget.user.name,
                   style: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.w400)),
+                      color: Colors.white, fontWeight: FontWeight.w400)),
             ],
           ),
         ),
@@ -123,14 +123,14 @@ class _CCommunityDetailScreenState extends State<CCommunityDetailScreen> {
                           height: 45,
                           decoration: BoxDecoration(
                             color: current == index
-                                ? Colors.white70
-                                : Colors.white54,
+                                ? Colors.white
+                                : Colors.white70,
                             borderRadius: current == index
                                 ? BorderRadius.circular(15)
                                 : BorderRadius.circular(10),
                             border: current == index
                                 ? Border.all(
-                                    color: Colors.deepPurpleAccent, width: 2)
+                                    color: Colors.grey.shade800, width: 2)
                                 : null,
                           ),
                           child: Center(
@@ -145,15 +145,15 @@ class _CCommunityDetailScreenState extends State<CCommunityDetailScreen> {
                           ),
                         ),
                       ),
-                      Visibility(
-                          visible: current == index,
-                          child: Container(
-                            width: 5,
-                            height: 5,
-                            decoration: const BoxDecoration(
-                                color: Colors.deepPurpleAccent,
-                                shape: BoxShape.circle),
-                          ))
+                      // Visibility(
+                      //     visible: current == index,
+                      //     child: Container(
+                      //       width: 5,
+                      //       height: 5,
+                      //       decoration: const BoxDecoration(
+                      //           color: Colors.red,
+                      //           shape: BoxShape.circle),
+                      //     ))
                     ],
                   );
                 }),
@@ -163,6 +163,7 @@ class _CCommunityDetailScreenState extends State<CCommunityDetailScreen> {
 
           SingleChildScrollView(
             child: SizedBox(
+              
               height: mq.height - keyboardSpace - mq.height / 5.2,
               child: items[current],
             ),

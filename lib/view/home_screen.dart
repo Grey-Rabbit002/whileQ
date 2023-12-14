@@ -33,15 +33,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final currentTheme = ref.watch(themeNotifierProvider);
+    //final currentTheme = ref.watch(themeNotifierProvider);
 
     return Scaffold(
       body: _screens[_currentIndex],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+        color: Colors.black,
         height: 50,
         // shape: const CircularNotchedRectangle(),
-        color: currentTheme.primaryColor,
+        //color: currentTheme.primaryColor,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
@@ -51,13 +52,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               onPressed: () {
                 _onTabTapped(0);
               },
-              icon: const Icon(Icons.home, size: 30),
+              icon: const Icon(Icons.home, size: 30, color: Colors.white,),
             ),
             IconButton(
               onPressed: () {
                 _onTabTapped(1);
               },
-              icon: const Icon(Icons.movie_creation_outlined, size: 30),
+              icon: const Icon(Icons.movie_creation_outlined, size: 30, color: Colors.white,),
             ),
             IconButton(
                 iconSize: 65,
@@ -72,13 +73,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               onPressed: () {
                 _onTabTapped(3);
               },
-              icon: const Icon(Icons.message, size: 30),
+              icon: const Icon(Icons.message, size: 30, color: Colors.white,),
             ),
             IconButton(
               onPressed: () {
                 _onTabTapped(4);
               },
-              icon: const Icon(Icons.account_circle, size: 30),
+              icon: const Icon(Icons.account_circle, size: 30, color: Colors.white,),
             ),
           ],
         ),

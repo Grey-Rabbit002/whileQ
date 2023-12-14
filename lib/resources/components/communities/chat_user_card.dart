@@ -30,9 +30,9 @@ class _ChatUserCardState extends State<ChatUserCard> {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 0),
-      color: Colors.white,
+      color: Colors.black,
       elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: InkWell(
           splashColor: Colors.grey,
           onTap: () {
@@ -72,7 +72,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
                 ),
 
                 //user name
-                title: Text(widget.user.name),
+                title: Text(widget.user.name,style: TextStyle(color: Colors.white),),
 
                 //last message
                 subtitle: Text(
@@ -81,7 +81,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
                             ? 'image'
                             : _message!.msg
                         : widget.user.about,
-                    maxLines: 1),
+                    maxLines: 1, style: TextStyle(color: Colors.white),),
 
                 //last message time
                 trailing: _message == null

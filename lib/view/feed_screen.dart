@@ -28,9 +28,9 @@ class FeedScreen extends ConsumerStatefulWidget {
 }
 
 class _FeedScreenState extends ConsumerState<FeedScreen> {
-  void themeToggler(WidgetRef ref) {
-    ref.read(themeNotifierProvider.notifier).toggleTheme();
-  }
+  // void themeToggler(WidgetRef ref) {
+  //   ref.read(themeNotifierProvider.notifier).toggleTheme();
+  // }
 
   final List<VideoItem> videoItems = [
     VideoItem(
@@ -81,45 +81,48 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final currentTheme = ref.watch(themeNotifierProvider);
+    //final currentTheme = ref.watch(themeNotifierProvider);
 
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          //backgroundColor: currentTheme.scaffoldBackgroundColor,
           backgroundColor: Colors.black,
-          elevation: 0.0,
-          actions: [
-            Switch.adaptive(
-              value: ref.watch(themeNotifierProvider.notifier).mode ==
-                  ThemeMode.light,
-              onChanged: (value) => themeToggler(ref),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const ClassroomScreen(),
-                  ),
-                );
-              },
-              icon: const Icon(
-                Icons.menu_book,
-                color: Colors.white,
-              ),
-            ),
-            IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => TestScreen(),
-                  ));
-                },
-                icon: const Icon(
-                  Icons.abc_outlined,
-                  color: Colors.white,
-                ))
-          ],
         ),
+        // appBar: AppBar(
+        //   //backgroundColor: currentTheme.scaffoldBackgroundColor,
+        //   backgroundColor: Colors.black,
+        //   elevation: 0.0,
+        //   actions: [
+        //     Switch.adaptive(
+        //       value: ref.watch(themeNotifierProvider.notifier).mode ==
+        //           ThemeMode.light,
+        //       onChanged: (value) => themeToggler(ref),
+        //     ),
+        //     // IconButton(
+        //     //   onPressed: () {
+        //     //     Navigator.of(context).push(
+        //     //       MaterialPageRoute(
+        //     //         builder: (context) => const ClassroomScreen(),
+        //     //       ),
+        //     //     );
+        //     //   },
+        //     //   icon: const Icon(
+        //     //     Icons.menu_book,
+        //     //     color: Colors.white,
+        //     //   ),
+        //     // ),
+        //     // IconButton(
+        //     //     onPressed: () {
+        //     //       Navigator.of(context).push(MaterialPageRoute(
+        //     //         builder: (context) => TestScreen(),
+        //     //       ));
+        //     //     },
+        //     //     icon: const Icon(
+        //     //       Icons.abc_outlined,
+        //     //       color: Colors.white,
+        //     //     ))
+        //   ],
+        // ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -151,7 +154,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                           width: MediaQuery.of(context).size.width,
                           margin: EdgeInsets.symmetric(horizontal: 5.0),
                           decoration: BoxDecoration(
-                            color: Colors.amber,
+                            color: Colors.black,
                           ),
                           child: Image.network(item, fit: BoxFit.cover),
                         );

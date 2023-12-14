@@ -30,9 +30,9 @@ class _ChatCommunityCardState extends ConsumerState<ChatCommunityCard> {
     log(widget.user.name);
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 0),
-      color: Colors.white,
-      elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      color: Colors.black,
+      //elevation: 5,
+      //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: InkWell(
           onTap: () {
             // for navigating to chat screen
@@ -78,7 +78,9 @@ class _ChatCommunityCardState extends ConsumerState<ChatCommunityCard> {
                 ),
 
                 //user name
-                title: Text(widget.user.name),
+                title: Text(widget.user.name,
+                style: TextStyle(color: Colors.white),
+                ),
 
                 //last message
                 subtitle: Text(
@@ -87,7 +89,9 @@ class _ChatCommunityCardState extends ConsumerState<ChatCommunityCard> {
                             ? 'image'
                             : _message!.msg
                         : widget.user.about,
-                    maxLines: 1),
+                    maxLines: 1,
+                    style: TextStyle(color: Colors.white),
+                    ),
 
                 //last message time
                 trailing: _message == null
@@ -108,8 +112,9 @@ class _ChatCommunityCardState extends ConsumerState<ChatCommunityCard> {
                         Text(
                             MyDateUtil.getLastMessageTime(
                                 context: context, time: _message!.sent),
-                            style: const TextStyle(color: Colors.black54),
+                            style: const TextStyle(color: Colors.white),
                           ),
+                          
               );
             },
           )),

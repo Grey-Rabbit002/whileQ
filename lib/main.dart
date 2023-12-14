@@ -3,6 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_notification_channel/flutter_notification_channel.dart';
+import 'package:flutter_notification_channel/notification_importance.dart';
+import 'package:flutter_notification_channel/notification_visibility.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
@@ -27,15 +30,17 @@ final userProvider = river.StreamProvider((ref) {
 late Size mq;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   // SystemChrome.setEnabledSystemUIMode(
   //   SystemUiMode.manual,
   //   overlays: [
   //     SystemUiOverlay.top,
   //   ],
   // );
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  _initializeFirebase();
+
+
+
   APIs.getSelfInfo();
   Provider.debugCheckInvalidValueType = null;
   runApp(const river.ProviderScope(child: MyApp()));
@@ -88,4 +93,17 @@ class MyApp extends river.ConsumerWidget {
       ),
     );
   }
+}
+
+_initializeFirebase() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform);
+
+    var result = await FlutterNotificationChannel.registerNotificationChannel(
+    description: 'For showing notification',
+    id: 'chats',
+    importance: NotificationImportance.IMPORTANCE_HIGH,
+    name: 'WHILE',
+);
+print(result);
 }

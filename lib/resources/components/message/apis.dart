@@ -60,6 +60,7 @@ class APIs {
       if (t != null) {
         me.pushToken = t;
         log('Push Token: $t');
+        print('Push Token: $t');
       }
     });
 
@@ -85,16 +86,16 @@ class APIs {
           "body": msg,
           "android_channel_id": "chats"
         },
-        // "data": {
-        //   "some_data": "User ID: ${me.id}",
-        // },
+        "data": {
+          "some_data": "User ID: ${me.id}",
+        },
       };
 
       var res = await post(Uri.parse('https://fcm.googleapis.com/fcm/send'),
           headers: {
             HttpHeaders.contentTypeHeader: 'application/json',
             HttpHeaders.authorizationHeader:
-                'key=AAAAQ0Bf7ZA:APA91bGd5IN5v43yedFDo86WiSuyTERjmlr4tyekbw_YW6JrdLFblZcbHdgjDmogWLJ7VD65KGgVbETS0Px7LnKk8NdAz4Z-AsHRp9WoVfArA5cNpfMKcjh_MQI-z96XQk5oIDUwx8D1'
+                'key=AAAAsNkZIGs:APA91bGeaCnMuqtGmil4H3ZKYVQ_9aaWIZlqd1hvrBzJlaKIUYl-w2XCycnvx8l5Iis61lezhZzdjphO4kYG0ahxTZUiz0fMdcaiKyZ3SjQxlt_y57i4sc3npUM4jjgoA7kUSawYYTDt'
           },
           body: jsonEncode(body));
       log('Response status: ${res.statusCode}');
@@ -110,6 +111,21 @@ class APIs {
   }
 
   // for adding an chat user for our conversation
+   static Future<bool> addChatUserdailog(String id) async {
+    final data = await firestore
+        .collection('users')
+        .where('email', isEqualTo: id)
+        .get();
+    firestore
+        .collection('users')
+        .doc(user.uid)
+        .collection('my_users')
+        .doc(data.docs.first.id)
+        .set({'timeStamp': FieldValue.serverTimestamp()});
+    following(data.docs.first.id);
+    follower(data.docs.first.id);
+    return true;
+  }
   static Future<bool> addChatUser(String id) async {
     firestore
         .collection('users')

@@ -50,8 +50,10 @@ class _SocialScreenState extends State<SocialScreen>
             }
           },
           child: Scaffold(
+            //backgroundColor: Colors.blue,
+
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.black,
               title: isSearching
                   ? TextField(
                       decoration: const InputDecoration(
@@ -76,7 +78,7 @@ class _SocialScreenState extends State<SocialScreen>
                     )
                   : const Text(
                       'Social',
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.white),
                     ),
               actions: [
                 IconButton(
@@ -85,7 +87,7 @@ class _SocialScreenState extends State<SocialScreen>
                     },
                     icon: const Icon(
                       Icons.group_add,
-                      color: Colors.black,
+                      color: Colors.white,
                     )),
                 IconButton(
                     onPressed: () {
@@ -94,7 +96,7 @@ class _SocialScreenState extends State<SocialScreen>
                     },
                     icon: const Icon(
                       Icons.notifications,
-                      color: Colors.black,
+                      color: Colors.white,
                     )),
                 IconButton(
                     onPressed: () {
@@ -106,10 +108,10 @@ class _SocialScreenState extends State<SocialScreen>
                     },
                     icon: const Icon(
                       Icons.search,
-                      color: Colors.black,
+                      color: Colors.white,
                     )),
                 PopupMenuButton(
-                    color: Colors.black,
+                    color: Colors.white,
                     elevation: 10,
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(
@@ -149,8 +151,8 @@ class _SocialScreenState extends State<SocialScreen>
               ],
               bottom: TabBar(
                 controller: _controller,
-                indicatorColor: Colors.black,
-                labelColor: Colors.black,
+                indicatorColor: Colors.white,
+                labelColor: Colors.white,
                 tabs: const [
                   Tab(
                     text: 'Connect',

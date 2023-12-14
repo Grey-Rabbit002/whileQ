@@ -12,7 +12,7 @@ class CreateContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentTheme = ref.watch(themeNotifierProvider);
+    //final currentTheme = ref.watch(themeNotifierProvider);
     var w = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -34,7 +34,7 @@ class CreateContainer extends ConsumerWidget {
             leading: Text(
               text,
               style:
-                  TextStyle(fontSize: 15, color: currentTheme.primaryColorDark),
+                  TextStyle(fontSize: 15),
             ),
             trailing: Container(
               decoration: BoxDecoration(

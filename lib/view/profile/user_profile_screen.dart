@@ -10,28 +10,29 @@ class ProfileScreen extends StatelessWidget {
       Tab(
         icon: Icon(
           Icons.photo_outlined,
-          color: Colors.black,
+          color: Colors.white,
           size: 30,
         ),
       ),
       Tab(
         icon: Icon(
           Icons.person,
-          color: Colors.black,
+          color: Colors.white,
           size: 30,
         ),
       ),
       Tab(
         icon: Icon(
           Icons.brush,
-          color: Colors.black,
+          color: Colors.white,
           size: 30,
         ),
       ),
     ];
 
-    return SafeArea(
-      child: Scaffold(
+    return //SafeArea(child: 
+      Scaffold(
+        backgroundColor: Colors.black,
         body: DefaultTabController(
           length: 3,
           child: NestedScrollView(
@@ -48,18 +49,19 @@ class ProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Material(
+                  color: Colors.black,
                   child: TabBar(
                     padding: EdgeInsets.all(0),
-                    indicatorColor: Colors.black,
+                    indicatorColor: Colors.white,
                     tabs: tabBarIcons,
                   ),
                 ),
                 Expanded(
                   child: TabBarView(
                     children: [
-                      Center(child: Text("Become a Content creator")),
-                      Center(child: Text("Become a Mentor")),
-                      Center(child: Text("Become a Freelancer")),
+                      Center(child: Text("Become a Content creator", style: TextStyle(color: Colors.white),)),
+                      Center(child: Text("Become a Mentor", style: TextStyle(color: Colors.white),)),
+                      Center(child: Text("Become a Freelancer", style: TextStyle(color: Colors.white),)),
                     ],
                   ),
                 ),
@@ -67,7 +69,6 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

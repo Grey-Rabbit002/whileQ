@@ -45,7 +45,7 @@ class _CChatScreenState extends State<CChatScreen> {
           }
         },
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.black,
 
           //body
           body: Column(
@@ -147,7 +147,7 @@ class _CChatScreenState extends State<CChatScreen> {
                         setState(() => _showEmoji = !_showEmoji);
                       },
                       icon: const Icon(Icons.emoji_emotions,
-                          color: Colors.blueAccent, size: 25)),
+                          color: Colors.black, size: 25)),
 
                   Expanded(
                       child: TextField(
@@ -185,7 +185,7 @@ class _CChatScreenState extends State<CChatScreen> {
                         }
                       },
                       icon: const Icon(Icons.image,
-                          color: Colors.blueAccent, size: 26)),
+                          color: Colors.black, size: 26)),
 
                   //take image from camera button
                   IconButton(
@@ -205,7 +205,7 @@ class _CChatScreenState extends State<CChatScreen> {
                         }
                       },
                       icon: const Icon(Icons.camera_alt_rounded,
-                          color: Colors.blueAccent, size: 26)),
+                          color: Colors.black, size: 26)),
 
                   //adding some space
                   SizedBox(width: mq.width * .02),
@@ -228,7 +228,7 @@ class _CChatScreenState extends State<CChatScreen> {
             padding:
                 const EdgeInsets.only(top: 10, bottom: 10, right: 5, left: 10),
             shape: const CircleBorder(),
-            color: const Color.fromARGB(255, 76, 175, 173),
+            color: Colors.blueAccent,
             child: const Icon(Icons.send, color: Colors.white, size: 28),
           )
         ],

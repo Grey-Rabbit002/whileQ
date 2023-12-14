@@ -53,11 +53,11 @@ class _ChatScreenState extends State<ChatScreen> {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             flexibleSpace: _appBar(),
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.black,
             toolbarHeight: 60,
           ),
 
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.black,
 
           //body
           body: Column(
@@ -158,7 +158,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     IconButton(
                         onPressed: () => Navigator.pop(context),
                         icon:
-                            const Icon(Icons.arrow_back, color: Colors.black)),
+                            const Icon(Icons.arrow_back, color: Colors.white)),
 
                     //user profile picture
                     ClipRRect(
@@ -171,7 +171,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             list.isNotEmpty ? list[0].image : widget.user.image,
                         errorWidget: (context, url, error) =>
                             const CircleAvatar(
-                                child: Icon(CupertinoIcons.person)),
+                                child: Icon(CupertinoIcons.person, color: Colors.white,)),
                       ),
                     ),
 
@@ -187,7 +187,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         Text(list.isNotEmpty ? list[0].name : widget.user.name,
                             style: const TextStyle(
                                 fontSize: 16,
-                                color: Colors.black87,
+                                color: Colors.white,
                                 fontWeight: FontWeight.w500)),
 
                         //for adding some space
@@ -205,7 +205,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                     context: context,
                                     lastActive: widget.user.lastActive),
                             style: const TextStyle(
-                                fontSize: 13, color: Colors.black54)),
+                                fontSize: 13, color: Colors.white)),
                       ],
                     )
                   ],

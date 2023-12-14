@@ -40,6 +40,7 @@ class StatusScreenState extends State<StatusScreenn> {
     mq = MediaQuery.of(context).size;
     log('////');
     return Scaffold(
+      backgroundColor: Colors.black,
       body: StreamBuilder<QuerySnapshot>(
         stream: peopleStream,
         builder: (context, snapshot) {
@@ -101,34 +102,44 @@ class StatusScreenState extends State<StatusScreenn> {
 
                   return Hero(
                     tag: 'status_${person['statusId']}',
-                    child: ListTile(
-                      onTap: () {
-                        // Navigate to the full status view screen
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => FullStatusScreen(
-                              statuses: resultList,
-                              initialIndex: index,
+                    child: Column(
+                      children: [
+                        ListTile(
+                          onTap: () {
+                            // Navigate to the full status view screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FullStatusScreen(
+                                  statuses: resultList,
+                                  initialIndex: index,
+                                ),
+                              ),
+                            );
+                          },
+                          leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(mq.height * .03),
+                            child: CachedNetworkImage(
+                              width: mq.height * .055,
+                              height: mq.height * .055,
+                              fit: BoxFit.fill,
+                              imageUrl: person['profileImg'],
+                              errorWidget: (context, url, error) =>
+                                  const CircleAvatar(
+                                      child: Icon(CupertinoIcons.person)),
                             ),
                           ),
-                        );
-                      },
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(mq.height * .03),
-                        child: CachedNetworkImage(
-                          width: mq.height * .055,
-                          height: mq.height * .055,
-                          fit: BoxFit.fill,
-                          imageUrl: person['profileImg'],
-                          errorWidget: (context, url, error) =>
-                              const CircleAvatar(
-                                  child: Icon(CupertinoIcons.person)),
+                          title: Text(person['userName'], style: TextStyle(color: Colors.white),),
+                          subtitle: Text(formattedDate, style: TextStyle(color: Colors.white),),
                         ),
-                      ),
-                      title: Text(person['userName']),
-                      subtitle: Text(formattedDate),
+                        Divider(
+                          color: Colors.grey.shade800,
+                          thickness: 1,
+                          height: 0,
+                        )
+                      ],
                     ),
+                    
                   );
                 },
               );
@@ -140,8 +151,9 @@ class StatusScreenState extends State<StatusScreenn> {
         onPressed: () {
           _showStatusInputDialog(context);
         },
+        backgroundColor: Colors.white,
         child: const Icon(
-          Icons.add,
+          Icons.add, color: Colors.black,
         ),
       ),
     );
