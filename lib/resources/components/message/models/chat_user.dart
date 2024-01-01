@@ -77,7 +77,27 @@ class ChatUser {
 
     return data;
   }
-
+  Map<String, dynamic> toMap() {
+    return {
+      'image': image,
+      'about': about,
+      'name': name,
+      'createdAt': createdAt,
+      'isOnline': isOnline,
+      'id': id,
+      'lastActive': lastActive,
+      'email': email,
+      'pushToken': pushToken,
+      'dateOfBirth': dateOfBirth,
+      'gender': gender,
+      'phoneNumber': phoneNumber,
+      'place': place,
+      'profession': profession,
+      'designation': designation,
+      'follower': follower,
+      'following': following,
+    };
+  }
   factory ChatUser.empty() {
     return ChatUser(
         image: '',

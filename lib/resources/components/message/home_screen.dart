@@ -2,6 +2,8 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:while_app/local_db/models/image_db.dart';
+import 'package:while_app/local_db/models/images_model.dart';
 import 'package:while_app/resources/components/communities/chat_user_card.dart';
 import '../../../main.dart';
 import 'apis.dart';
@@ -10,10 +12,10 @@ import 'models/chat_user.dart';
 
 class HomeScreenFinal extends StatefulWidget {
   const HomeScreenFinal({
-    super.key,
+    Key? key,
     required this.isSearching,
     required this.value,
-  });
+  }) : super(key: key);
 
   final bool isSearching;
   final String value;
@@ -47,12 +49,13 @@ class _HomeScreenFinalState extends State<HomeScreenFinal> {
     });
   }
 
+  List<ChatMessage> firestoremessages = [];
+
   @override
   Widget build(BuildContext context) {
     bool isSearching = widget.isSearching;
 
     if (widget.value != '') {
-      log(widget.value);
       _searchList.clear();
 
       for (var i in list) {
@@ -72,69 +75,97 @@ class _HomeScreenFinalState extends State<HomeScreenFinal> {
             _addChatUserDialog();
           },
           backgroundColor: Colors.white,
-          child: const Icon(Icons.add_comment_rounded, color: Colors.black,),
+          child: const Icon(
+            Icons.add_comment_rounded,
+            color: Colors.black,
+          ),
         ),
       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection('users')
-            .doc(APIs.me.id)
-            .collection('my_users')
-            .orderBy('timeStamp', descending: true)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-                child: CircularProgressIndicator(
-              backgroundColor: Colors.white,
-            ));
-          }
-          if (!snapshot.hasData) {
-            return const Center(child: Text('No data available.'));
-          }
-
-          List<String> userIds = snapshot.data!.docs.map((e) => e.id).toList();
-          print('\nuserids $userIds');
-          return ListView.builder(
-            itemCount: isSearching ? _searchList.length : userIds.length,
-            padding: EdgeInsets.only(top: mq.height * .01),
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) {
-              return StreamBuilder(
-                stream: FirebaseFirestore.instance
-                    .collection('users')
-                    .doc(userIds[index])
-                    .snapshots(),
-                builder: (context, userSnapshot) {
-                  if (userSnapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                        child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ));
-                  }
-                  if (!userSnapshot.hasData) {
-                    return const Center(child: Text('No user data available.'));
-                  }
-
-                  // Access the data for the document
-                  final userData =
-                      userSnapshot.data!.data() as Map<String, dynamic>;
-                  final chatUser = ChatUser.fromJson(userData);
-
-                  return Column(
-                    children: [
-                      ChatUserCard(
-                        user: isSearching ? _searchList[index] : chatUser,
-                      ),
-                      Divider(color: Colors.grey.shade800,
-                      thickness: 1,
-                      height: 0,)
-                    ],
+      body: FutureBuilder(
+        future: DBHelper.getAllUsers(),
+        builder: (context, localSnapshot) {
+          if (localSnapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          } else if (localSnapshot.hasError) {
+            return Text('Error: ${localSnapshot.error}');
+          } else {
+            List<ChatUser> localMessages = localSnapshot.data ?? [];
+            return StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(APIs.me.id)
+                  .collection('my_users')
+                  .orderBy('timeStamp', descending: true)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.white,
+                    ),
                   );
-                },
-              );
-            },
-          );
+                }
+                if (!snapshot.hasData) {
+                  return const Center(child: Text('No data available.'));
+                }
+
+                List<String> userIds =
+                    snapshot.data!.docs.map((e) => e.id).toList();
+
+                return ListView.builder(
+                  itemCount: isSearching ? _searchList.length : userIds.length,
+                  padding: EdgeInsets.only(top: mq.height * .01),
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(userIds[index])
+                          .snapshots(),
+                      builder: (context, userSnapshot) {
+                        if (userSnapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                          );
+                        }
+                        if (!userSnapshot.hasData) {
+                          return const Center(
+                            child: Text('No user data available.'),
+                          );
+                        } else {
+                          final userData =
+                              userSnapshot.data!.data() as Map<String, dynamic>;
+                          final chatUser = ChatUser.fromJson(userData);
+                          if (!localMessages
+                              .any((message) => message.id == chatUser.id)) {
+                            DBHelper.insertUser(chatUser);
+                          }
+
+                          print(localMessages.length);
+                          return Column(
+                            children: [
+                              ChatUserCard(
+                                  user: isSearching
+                                      ? _searchList[index]
+                                      : localMessages[index]),
+                              Divider(
+                                color: Colors.grey.shade800,
+                                thickness: 1,
+                                height: 0,
+                              )
+                            ],
+                          );
+                        }
+                      },
+                    );
+                  },
+                );
+              },
+            );
+          }
         },
       ),
     );

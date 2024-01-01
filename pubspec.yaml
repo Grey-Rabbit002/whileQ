@@ -50,10 +50,9 @@ dependencies:
   firebase_storage: ^11.2.3
   firebase: ^9.0.3
   cloud_firestore: ^4.8.1
-  cached_network_image: ^3.2.3
+  cached_network_image: 
   flutter_cache_manager: ^3.3.0
   flutter_launcher_icons: 
-  
   video_player: 
   async: ^2.8.1
   firebase_messaging: ^14.7.6
@@ -81,7 +80,7 @@ dependencies:
   chewie: ^1.5.0
   carousel_slider: ^4.2.1
   # gradient_text:
-  flutter_notification_channel: 
+  flutter_notification_channel:
   
 
 dev_dependencies:

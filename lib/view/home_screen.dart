@@ -36,7 +36,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     //final currentTheme = ref.watch(themeNotifierProvider);
 
     return Scaffold(
-      body: _screens[_currentIndex],
+      body: _screens[_currentIndex], // replace with _currentIndex
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
@@ -52,13 +52,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               onPressed: () {
                 _onTabTapped(0);
               },
-              icon: const Icon(Icons.home, size: 30, color: Colors.white,),
+              icon: const Icon(
+                Icons.home,
+                size: 30,
+                color: Colors.white,
+              ),
             ),
             IconButton(
               onPressed: () {
                 _onTabTapped(1);
               },
-              icon: const Icon(Icons.movie_creation_outlined, size: 30, color: Colors.white,),
+              icon: const Icon(
+                Icons.movie_creation_outlined,
+                size: 30,
+                color: Colors.white,
+              ),
             ),
             IconButton(
                 iconSize: 65,
@@ -73,13 +81,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               onPressed: () {
                 _onTabTapped(3);
               },
-              icon: const Icon(Icons.message, size: 30, color: Colors.white,),
+              icon: const Icon(
+                Icons.message,
+                size: 30,
+                color: Colors.white,
+              ),
             ),
             IconButton(
               onPressed: () {
                 _onTabTapped(4);
               },
-              icon: const Icon(Icons.account_circle, size: 30, color: Colors.white,),
+              icon: const Icon(
+                Icons.account_circle,
+                size: 30,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
