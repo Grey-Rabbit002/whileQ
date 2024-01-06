@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:while_app/local_db/models/db_helper.dart';
+import 'package:while_app/local_db/models/fetchUsers.dart';
 import 'package:while_app/local_db/models/image_db.dart';
 import 'package:while_app/local_db/models/images_model.dart';
 import 'package:while_app/resources/components/communities/chat_user_card.dart';
@@ -27,12 +30,13 @@ class HomeScreenFinal extends StatefulWidget {
 class _HomeScreenFinalState extends State<HomeScreenFinal> {
   List<ChatUser> list = [];
   final List<ChatUser> _searchList = [];
+  List<ChatUser> locallist = [];
 
   @override
   void initState() {
     super.initState();
     APIs.getSelfInfo();
-
+    // refreshFunc();
     SystemChannels.lifecycle.setMessageHandler((message) {
       log('Message: $message');
 
@@ -49,7 +53,10 @@ class _HomeScreenFinalState extends State<HomeScreenFinal> {
     });
   }
 
-  List<ChatMessage> firestoremessages = [];
+  // refreshFunc() async {
+  //   await DBHelper().readAllData();
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +65,7 @@ class _HomeScreenFinalState extends State<HomeScreenFinal> {
     if (widget.value != '') {
       _searchList.clear();
 
-      for (var i in list) {
+      for (var i in locallist) {
         if (i.name.toLowerCase().contains(widget.value.toLowerCase()) ||
             i.email.toLowerCase().contains(widget.value.toLowerCase())) {
           _searchList.add(i);
@@ -81,91 +88,102 @@ class _HomeScreenFinalState extends State<HomeScreenFinal> {
           ),
         ),
       ),
-      body: FutureBuilder(
-        future: DBHelper.getAllUsers(),
-        builder: (context, localSnapshot) {
-          if (localSnapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          } else if (localSnapshot.hasError) {
-            return Text('Error: ${localSnapshot.error}');
-          } else {
-            List<ChatUser> localMessages = localSnapshot.data ?? [];
-            return StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection('users')
-                  .doc(APIs.me.id)
-                  .collection('my_users')
-                  .orderBy('timeStamp', descending: true)
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      backgroundColor: Colors.white,
-                    ),
-                  );
-                }
-                if (!snapshot.hasData) {
-                  return const Center(child: Text('No data available.'));
-                }
-
-                List<String> userIds =
-                    snapshot.data!.docs.map((e) => e.id).toList();
-
-                return ListView.builder(
-                  itemCount: isSearching ? _searchList.length : userIds.length,
-                  padding: EdgeInsets.only(top: mq.height * .01),
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection('users')
-                          .doc(userIds[index])
-                          .snapshots(),
-                      builder: (context, userSnapshot) {
-                        if (userSnapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                            ),
-                          );
-                        }
-                        if (!userSnapshot.hasData) {
-                          return const Center(
-                            child: Text('No user data available.'),
-                          );
-                        } else {
-                          final userData =
-                              userSnapshot.data!.data() as Map<String, dynamic>;
-                          final chatUser = ChatUser.fromJson(userData);
-                          if (!localMessages
-                              .any((message) => message.id == chatUser.id)) {
-                            DBHelper.insertUser(chatUser);
-                          }
-
-                          print(localMessages.length);
-                          return Column(
-                            children: [
-                              ChatUserCard(
-                                  user: isSearching
-                                      ? _searchList[index]
-                                      : localMessages[index]),
-                              Divider(
-                                color: Colors.grey.shade800,
-                                thickness: 1,
-                                height: 0,
-                              )
-                            ],
-                          );
-                        }
-                      },
-                    );
-                  },
-                );
-              },
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('users')
+            .doc(APIs.me.id)
+            .collection('my_users')
+            .orderBy('timeStamp', descending: true)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.white,
+              ),
             );
           }
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const Center(child: Text('No data available.'));
+          }
+
+          List<String> userIds = snapshot.data!.docs.map((e) => e.id).toList();
+          return ListView.builder(
+            itemCount: isSearching ? _searchList.length : userIds.length,
+            padding: EdgeInsets.only(top: mq.height * .01),
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, index) {
+              if (index < userIds.length) {
+                return StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(userIds[index])
+                      .snapshots(),
+                  builder: (context, userSnapshot) {
+                    if (userSnapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      );
+                    }
+                    if (!userSnapshot.hasData) {
+                      return const Center(
+                        child: Text('No user data available.'),
+                      );
+                    } else {
+                      final userData =
+                          userSnapshot.data!.data() as Map<String, dynamic>;
+                      final chatUser = ChatUser.fromJson(userData);
+                      // DBHelper.insertUser(chatUser);
+                      print(chatUser.name);
+                      // print(wholeDataList);
+
+                      // The checkindex is not -1, meaning a match was found
+                      // var localDataIndex = wholeDataList.indexWhere((data) {
+                      //   var localUser = jsonDecode(data['DummyData']);
+                      //   return localUser['name'] == chatUser.name;
+                      // });
+
+                      // var localdata = localDataIndex != -1
+                      //     ? jsonDecode(
+                      //         wholeDataList[localDataIndex]['DummyData'])
+                      //     : null;
+                      var localdata = '';
+                      print("///////////////");
+                      print(localdata);
+                      // final String? imageBase64 =
+                      //     localdata['image'];
+                      // final Uint8List? image = imageBase64 != null
+                      //     ? base64Decode(imageBase64)
+                      //     : null;
+                      // print(image);
+                      // print(localdata);
+                      return Column(
+                        children: [
+                          ChatUserCard(
+                            localdata: localdata,
+                            locindex: index,
+                            user: index < locallist.length
+                                ? locallist[index]
+                                : chatUser,
+                          ),
+                          Divider(
+                            color: Colors.grey.shade800,
+                            thickness: 1,
+                            height: 0,
+                          ),
+                        ],
+                      );
+                    }
+                  },
+                );
+              } else {
+                return Container(); // Add a default case
+              }
+            },
+          );
         },
       ),
     );

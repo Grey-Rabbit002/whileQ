@@ -40,7 +40,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   void dispose() {
-    print('Dispose is being called');
+    // print('Dispose is being called');
     _chewieController.dispose();
     super.dispose();
   }
@@ -56,7 +56,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
           IconButton(onPressed: () {
             Navigator.pop(context);
             dispose();
-          }, icon: Icon(Icons.arrow_back))
+          }, icon: const Icon(Icons.arrow_back))
         ],
       ),
       body: Chewie(controller: _chewieController),

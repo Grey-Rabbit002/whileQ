@@ -1,5 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:while_app/local_db/models/db_helper.dart';
+import 'package:while_app/local_db/models/fetchUsers.dart';
 import 'package:while_app/resources/components/communities/add_community_widget.dart';
 import 'package:while_app/resources/components/message/home_screen.dart';
 import 'package:while_app/view/social/notification.dart';
@@ -29,8 +31,15 @@ class _SocialScreenState extends State<SocialScreen>
   @override
   void initState() {
     super.initState();
+    // listUsersFollowers();
+    // refreshFunc();
     _controller = TabController(length: 4, vsync: this, initialIndex: 1);
   }
+
+  // refreshFunc() async {
+  //   DBHelper().readAllData();
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {

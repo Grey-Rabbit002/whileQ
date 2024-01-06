@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
@@ -32,17 +33,18 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    _googleSignIn.onCurrentUserChanged.listen((account) {
-      setState(() {
-        currentUser = account!;
-      });
-    });
-    _googleSignIn.signInSilently();
+    // _googleSignIn.onCurrentUserChanged.listen((account) {
+    //   setState(() {
+    //     currentUser = account!;
+    //   });
+    // });
+    // _googleSignIn.signInSilently();
   }
 
   Future<void> handleSignIn() async {
     try {
-      await _googleSignIn.signIn();
+      await FirebaseAuthMethods(FirebaseAuth.instance)
+          .signInWithGoogle(context);
     } catch (error) {
       log("Sign in error" + error.toString());
     }

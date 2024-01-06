@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:while_app/local_db/models/db_helper.dart';
+import 'package:while_app/local_db/models/fetchUsers.dart';
+import 'package:while_app/resources/components/message/apis.dart';
 import 'package:while_app/theme/pallete.dart';
 import 'package:while_app/view/create_screen.dart';
 import 'package:while_app/view/feed_screen.dart';
@@ -21,6 +24,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     setState(() {
       _currentIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    // listUsersFollowers();
+    APIs.getSelfInfo();
+    super.initState();
   }
 
   final List<Widget> _screens = [

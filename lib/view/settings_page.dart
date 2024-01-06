@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:while_app/resources/components/text_button.dart';
 
 import '../repository/firebase_repository.dart';
@@ -64,8 +65,9 @@ class Settings extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Textbutton(
                           ontap: () {
-                            FirebaseAuthMethods(FirebaseAuth.instance)
-                                .signOut(context);
+                            context
+                                .read<FirebaseAuthMethods>()
+                                .signout(context);
                             Navigator.of(context).pop();
                           },
                           text: "Logout"))

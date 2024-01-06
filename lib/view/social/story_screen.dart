@@ -1,7 +1,13 @@
+import 'dart:async';
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
+import 'package:while_app/local_db/models/db_helper.dart';
 import 'package:while_app/main.dart';
 import 'package:while_app/resources/components/message/apis.dart';
 import 'package:while_app/resources/components/message/helper/dialogs.dart';
@@ -42,6 +48,18 @@ class StoryScreenState extends State<StoryScreen>
     super.dispose();
   }
 
+  _getBytes(imageUrl) async {
+    try {
+      final ByteData data =
+          await NetworkAssetBundle(Uri.parse(imageUrl)).load(imageUrl);
+      final bytes = data.buffer.asUint8List();
+      return base64Encode(bytes);
+    } catch (error) {
+      print("Error getting bytes: $error");
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +97,8 @@ class StoryScreenState extends State<StoryScreen>
           padding: EdgeInsets.all(16.0),
           child: Text(
             'People to Follow:',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+            style: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
         Expanded(
@@ -143,19 +162,43 @@ class StoryScreenState extends State<StoryScreen>
                                     child: Icon(CupertinoIcons.person)),
                           ),
                         ),
-                        title: Text(person['name'],style: TextStyle(color: Colors.white),),
-                        subtitle: Text(person['email'],style: TextStyle(color: Colors.white),),
+                        title: Text(
+                          person['name'],
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        subtitle: Text(
+                          person['email'],
+                          style: TextStyle(color: Colors.white),
+                        ),
                         trailing: ElevatedButton(
                           style: TextButton.styleFrom(
                               elevation: 4,
                               backgroundColor:
                                   const Color.fromARGB(255, 235, 235, 235)),
                           onPressed: () async {
-                            await APIs.addChatUser(person['id']).then((value) {
-                              if (value) {
-                                Dialogs.showSnackbar(context, 'User Added');
-                              }
-                            });
+                            final img = await _getBytes(person['image']) ??
+                                await _getBytes(
+                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRnQaBFUhEW2hDDsYP_Skq-wt-XGF9mek7YA&usqp=CAU');
+                            print(img);
+                            // await DBHelper()
+                            //     .addDataLocally(
+                            //   wholeData: jsonEncode({
+                            //     'user_id': person['id'],
+                            //     'name': person['name'],
+                            //     'about': person['about'],
+                            //     // 'image' : img
+                            //   }),
+                            // )
+                            //     .then((value) async {
+                            //   print("added to local");
+                              // print(wholeDataList);
+                              await APIs.addChatUser(person['id'])
+                                  .then((value) {
+                                if (value) {
+                                  Dialogs.showSnackbar(context, 'User Added');
+                                }
+                              });
+                            // });
                           },
                           child: const Text('Follow',
                               style: TextStyle(color: Colors.black)),
@@ -180,7 +223,8 @@ class StoryScreenState extends State<StoryScreen>
           padding: EdgeInsets.all(16.0),
           child: Text(
             'Communities to Join:',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+            style: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
         Expanded(
@@ -243,8 +287,14 @@ class StoryScreenState extends State<StoryScreen>
                                     child: Icon(CupertinoIcons.person)),
                           ),
                         ),
-                        title: Text(page['name'], style: TextStyle(color: Colors.white),),
-                        subtitle: Text(page['domain'], style: TextStyle(color: Colors.white),),
+                        title: Text(
+                          page['name'],
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        subtitle: Text(
+                          page['domain'],
+                          style: TextStyle(color: Colors.white),
+                        ),
                         trailing: ElevatedButton(
                           style: TextButton.styleFrom(
                               elevation: 4,

@@ -9,14 +9,18 @@ import 'package:flutter_notification_channel/notification_visibility.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
+import 'package:while_app/local_db/models/db_helper.dart';
+import 'package:while_app/local_db/models/store_model.dart';
 import 'package:while_app/repository/firebase_repository.dart';
 import 'package:while_app/resources/components/message/apis.dart';
+import 'package:while_app/resources/components/message/models/chat_user.dart';
 import 'package:while_app/utils/data_provider.dart';
 import 'package:while_app/utils/routes/routes_name.dart';
 import 'package:while_app/view_model/current_user_provider.dart';
 import 'package:while_app/view_model/firebasedata.dart';
 import 'package:while_app/view_model/post_provider.dart';
 import 'package:while_app/view_model/profile_controller.dart';
+import 'package:while_app/view_model/wrapper/wrapper.dart';
 import 'utils/routes/routes.dart';
 import 'view_model/reel_controller.dart';
 import 'firebase_options.dart';
@@ -38,10 +42,8 @@ void main() async {
   //   ],
   // );
   _initializeFirebase();
-
-
-
-  APIs.getSelfInfo();
+  // await APIs.getSelfInfo();
+  // refreshOnstart();
   Provider.debugCheckInvalidValueType = null;
   runApp(const river.ProviderScope(child: MyApp()));
 }
@@ -90,20 +92,20 @@ class MyApp extends river.ConsumerWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: RoutesName.wrapper,
         onGenerateRoute: Routes.generateRoute,
+        home: Wrapper(),
       ),
     );
   }
 }
 
 _initializeFirebase() async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-    var result = await FlutterNotificationChannel.registerNotificationChannel(
+  var result = await FlutterNotificationChannel.registerNotificationChannel(
     description: 'For showing notification',
     id: 'chats',
     importance: NotificationImportance.IMPORTANCE_HIGH,
     name: 'WHILE',
-);
-print(result);
+  );
+  // print(result);
 }

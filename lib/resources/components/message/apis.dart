@@ -111,11 +111,9 @@ class APIs {
   }
 
   // for adding an chat user for our conversation
-   static Future<bool> addChatUserdailog(String id) async {
-    final data = await firestore
-        .collection('users')
-        .where('email', isEqualTo: id)
-        .get();
+  static Future<bool> addChatUserdailog(String id) async {
+    final data =
+        await firestore.collection('users').where('email', isEqualTo: id).get();
     firestore
         .collection('users')
         .doc(user.uid)
@@ -126,6 +124,7 @@ class APIs {
     follower(data.docs.first.id);
     return true;
   }
+
   static Future<bool> addChatUser(String id) async {
     firestore
         .collection('users')
