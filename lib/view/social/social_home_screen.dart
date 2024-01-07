@@ -1,7 +1,5 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:while_app/local_db/models/db_helper.dart';
-import 'package:while_app/local_db/models/fetchUsers.dart';
 import 'package:while_app/resources/components/communities/add_community_widget.dart';
 import 'package:while_app/resources/components/message/home_screen.dart';
 import 'package:while_app/view/social/notification.dart';

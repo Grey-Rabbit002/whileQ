@@ -27,13 +27,13 @@ class _QuestionsScreenState extends State<HardQuestionsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quiz Questions'),
+        title: const Text('Quiz Questions'),
       ),
       body: FutureBuilder(
         future: _getQuestions(),
         builder: (context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
@@ -45,7 +45,7 @@ class _QuestionsScreenState extends State<HardQuestionsScreen> {
           }
 
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(
+            return const Center(
               child: Text('No questions available.'),
             );
           }
@@ -59,10 +59,10 @@ class _QuestionsScreenState extends State<HardQuestionsScreen> {
             children: [
               Text(
                 currentQuestion['question'],
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ..._buildAnswerButtons(currentQuestion),
             ],
           );
@@ -72,7 +72,7 @@ class _QuestionsScreenState extends State<HardQuestionsScreen> {
   }
 
   Future<List<Map<String, dynamic>>> _getQuestions() async {
-    final category = 'Hard'; // Set the category as needed
+    const category = 'Hard'; // Set the category as needed
     final querySnapshot = await FirebaseFirestore.instance
         .collection('communities')
         .doc(widget.user.id)
@@ -81,7 +81,7 @@ class _QuestionsScreenState extends State<HardQuestionsScreen> {
         .collection(category)
         .get();
 
-    return querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+    return querySnapshot.docs.map((doc) => doc.data()).toList();
   }
 
  List<Widget> _buildAnswerButtons(Map<String, dynamic> question) {
@@ -99,7 +99,7 @@ class _QuestionsScreenState extends State<HardQuestionsScreen> {
     }).toList();
   } else {
     // Handle the case where 'options' is not a Map
-    return [Text('Error: Options not available')];
+    return [const Text('Error: Options not available')];
   }
 }
 }

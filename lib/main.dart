@@ -5,15 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_notification_channel/flutter_notification_channel.dart';
 import 'package:flutter_notification_channel/notification_importance.dart';
-import 'package:flutter_notification_channel/notification_visibility.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
 import 'package:provider/provider.dart';
-import 'package:video_player/video_player.dart';
-import 'package:while_app/local_db/models/db_helper.dart';
-import 'package:while_app/local_db/models/store_model.dart';
 import 'package:while_app/repository/firebase_repository.dart';
 import 'package:while_app/resources/components/message/apis.dart';
-import 'package:while_app/resources/components/message/models/chat_user.dart';
 import 'package:while_app/utils/data_provider.dart';
 import 'package:while_app/utils/routes/routes_name.dart';
 import 'package:while_app/view_model/current_user_provider.dart';
@@ -21,9 +16,10 @@ import 'package:while_app/view_model/firebasedata.dart';
 import 'package:while_app/view_model/post_provider.dart';
 import 'package:while_app/view_model/profile_controller.dart';
 import 'package:while_app/view_model/wrapper/wrapper.dart';
+
+import 'firebase_options.dart';
 import 'utils/routes/routes.dart';
 import 'view_model/reel_controller.dart';
-import 'firebase_options.dart';
 
 final userProvider = river.StreamProvider((ref) {
   return FirebaseFirestore.instance
@@ -71,15 +67,25 @@ class MyApp extends river.ConsumerWidget {
 
     return MultiProvider(
       providers: [
-        Provider(create: (_) => PostProvider()),
+        Provider(
+          create: (_) => PostProvider(),
+        ),
         Provider<FirebaseAuthMethods>(
-            create: (_) => FirebaseAuthMethods(FirebaseAuth.instance)),
-        Provider<ReelController>(create: (_) => ReelController()),
+          create: (_) => FirebaseAuthMethods(FirebaseAuth.instance),
+        ),
+        Provider<ReelController>(
+          create: (_) => ReelController(),
+        ),
         StreamProvider(
-            create: (context) => context.read<FirebaseAuthMethods>().authState,
-            initialData: null),
-        ChangeNotifierProvider(create: (_) => ProfileController()),
-        Provider(create: (_) => CurrentUserProvider()),
+          create: (context) => context.read<FirebaseAuthMethods>().authState,
+          initialData: null,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ProfileController(),
+        ),
+        Provider(
+          create: (_) => CurrentUserProvider(),
+        ),
         Provider(
           create: (_) => FireBaseDataProvider(),
         ),
@@ -90,7 +96,7 @@ class MyApp extends river.ConsumerWidget {
       child: const MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        initialRoute: RoutesName.wrapper,
+        initialRoute: RoutesName.splash,
         onGenerateRoute: Routes.generateRoute,
         home: Wrapper(),
       ),

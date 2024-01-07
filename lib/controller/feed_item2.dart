@@ -5,7 +5,6 @@ import 'package:video_player/video_player.dart';
 import 'package:while_app/data/model/video_model.dart';
 import 'package:while_app/resources/components/message/helper/dialogs.dart';
 // import 'package:while_app/resources/components/videoPlayer/circle_animation.dart';
-import 'package:while_app/utils/circle_animation.dart';
 
 class FeedItem2 extends StatefulWidget {
   const FeedItem2({super.key, required this.video, required this.index});

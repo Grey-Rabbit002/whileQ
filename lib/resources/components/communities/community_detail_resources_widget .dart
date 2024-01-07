@@ -172,7 +172,7 @@ class CommunityDetailResourcesState extends State<CommunityDetailResources> {
                 children: [
                   ListTile(
                     title: Text(resource['title'] ??
-                        'Resource $index',style: TextStyle(color: Colors.white),), // Use the title if available
+                        'Resource $index',style: const TextStyle(color: Colors.white),), // Use the title if available
                     subtitle: Text(resource['text'],style: const TextStyle(color: Colors.white),),
                     onTap: () {
                       // Handle the resource item click
