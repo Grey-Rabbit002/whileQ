@@ -1,12 +1,7 @@
-import 'dart:convert';
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:while_app/local_db/models/db_helper.dart';
-import 'package:while_app/local_db/models/fetchUsers.dart';
-import 'package:while_app/local_db/models/image_db.dart';
-import 'package:while_app/local_db/models/images_model.dart';
 import 'package:while_app/resources/components/communities/chat_user_card.dart';
 import '../../../main.dart';
 import 'apis.dart';

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:while_app/local_db/models/db_helper.dart';
-import 'package:while_app/local_db/models/fetchUsers.dart';
 import 'package:while_app/resources/components/message/apis.dart';
-import 'package:while_app/theme/pallete.dart';
 import 'package:while_app/view/create_screen.dart';
 import 'package:while_app/view/feed_screen.dart';
 import 'package:while_app/view/profile/user_profile_screen.dart';

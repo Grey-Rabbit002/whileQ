@@ -1,11 +1,9 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:while_app/data/model/video_model.dart';
 // import 'package:while_app/resources/components/videoPlayer/circle_animation.dart';
-import 'package:while_app/utils/circle_animation.dart';
 
 class FeedItem extends StatefulWidget {
   const FeedItem(

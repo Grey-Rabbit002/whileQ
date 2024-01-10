@@ -1,12 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:while_app/local_db/models/db_helper.dart';
-import 'package:while_app/local_db/models/store_model.dart';
-import 'package:while_app/repository/firebase_repository.dart';
-import 'package:while_app/resources/components/message/apis.dart';
-import 'package:while_app/view/auth/phone.dart';
 import 'package:while_app/view/home_screen.dart';
 import 'package:while_app/view/auth/login_screen.dart';
 

@@ -4,7 +4,7 @@ class ImageViewer extends StatelessWidget {
   final String imageUrl;
   final String imageTitle;
 
-  ImageViewer(this.imageUrl, this.imageTitle);
+  const ImageViewer(this.imageUrl, this.imageTitle, {super.key});
 
   @override
   Widget build(BuildContext context) {
