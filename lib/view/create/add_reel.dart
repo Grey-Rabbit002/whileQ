@@ -123,7 +123,8 @@ class _AddReelState extends State<AddReel> {
           // Video uploaded successfully
           final Map<String, dynamic> data =
               json.decode(await response.stream.bytesToString());
-          Dialogs.showSnackbar(context, data['videoId']);
+          //Dialogs.showSnackbar(context, data['videoId']);
+          Dialogs.showSnackbar(context, data['assets']['thumbnail']);
 
           final CollectionReference collectionReference =
               FirebaseFirestore.instance.collection('videos');
@@ -133,7 +134,8 @@ class _AddReelState extends State<AddReel> {
             'title': title,
             'description': des,
             'likes': [],
-            'views': 0
+            'views': 0,
+            'thumbnail': data['assets']['thumbnail'],
           };
           collectionReference.add(vid).then((value) {
             // Utils.toastMessage('Your video is uploaded!');
