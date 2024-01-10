@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:while_app/main.dart';
+import 'package:while_app/resources/components/message/apis.dart';
 
 class FirebaseImageScreen extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -12,7 +13,10 @@ class FirebaseImageScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: StreamBuilder<QuerySnapshot>(
-        stream: _firestore.collection('videos').snapshots(),
+        stream: _firestore
+            .collection('videos')
+            .where('uploadedBy', isEqualTo: APIs.me.id)
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
