@@ -79,13 +79,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             ),
             IconButton(
-                iconSize: 65,
+                iconSize: 100,
                 onPressed: () {
                   _onTabTapped(2);
                 },
                 icon: Image.asset(
-                  'assets/whilelogowithoutname.png',
-                  fit: BoxFit.fill,
+                  'assets/while.png',
+                  fit: BoxFit.cover,
                 )),
             IconButton(
               onPressed: () {

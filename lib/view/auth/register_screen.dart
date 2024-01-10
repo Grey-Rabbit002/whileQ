@@ -7,6 +7,7 @@ import 'package:while_app/resources/components/round_button.dart';
 import 'package:while_app/resources/components/text_container_widget.dart';
 import 'package:while_app/utils/utils.dart';
 import 'package:while_app/view/auth/login_screen.dart';
+import 'package:while_app/view_model/wrapper/wrapper.dart';
 import '../../repository/firebase_repository.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -97,7 +98,7 @@ class SignUpScreen extends StatelessWidget {
                     RoundButton(
                       loading: false,
                       title: 'SignUp',
-                      onPress: () {
+                      onPress: () async {
                         if (_emailController.text.isEmpty) {
                           Utils.flushBarErrorMessage(
                               'Please enter email', context);
@@ -109,7 +110,7 @@ class SignUpScreen extends StatelessWidget {
                               'Please enter at least 6-digit password',
                               context);
                         } else {
-                          context
+                          await context
                               .read<FirebaseAuthMethods>()
                               .signInWithEmailAndPassword(
                                 _emailController.text.toString(),
@@ -117,7 +118,16 @@ class SignUpScreen extends StatelessWidget {
                                 _nameController.text.toString(),
                                 context,
                               );
-                          // Navigator.of(context).pop();
+
+                          await context
+                              .read<FirebaseAuthMethods>()
+                              .signout(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ));
+
                           Utils.toastMessage('Response submitted');
                         }
                       },

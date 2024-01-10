@@ -71,6 +71,7 @@ class MyApp extends river.ConsumerWidget {
 
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => FirebaseAuthMethods(FirebaseAuth.instance),),
         Provider(create: (_) => PostProvider()),
         Provider<FirebaseAuthMethods>(
             create: (_) => FirebaseAuthMethods(FirebaseAuth.instance)),
@@ -100,7 +101,7 @@ class MyApp extends river.ConsumerWidget {
 
 _initializeFirebase() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
+  
   var result = await FlutterNotificationChannel.registerNotificationChannel(
     description: 'For showing notification',
     id: 'chats',

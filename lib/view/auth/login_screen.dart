@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:while_app/resources/colors.dart';
@@ -11,12 +12,16 @@ import 'package:while_app/resources/components/round_button.dart';
 import 'package:while_app/resources/components/text_container_widget.dart';
 import 'package:while_app/utils/routes/routes_name.dart';
 import 'package:while_app/utils/utils.dart';
+import 'package:while_app/view_model/wrapper/wrapper.dart';
 import '../../repository/firebase_repository.dart';
+// import 'package:riverpod/riverpod.dart' as river;
 
 GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>[
   'email',
   'https://www.googleapis.com/auth/contacts.readonly'
 ]);
+
+// final loadingStateProvider = StateProvider<bool>((ref) => false);
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -30,6 +35,7 @@ class LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   late GoogleSignInAccount currentUser;
+  // bool signin = false;
   @override
   void initState() {
     super.initState();
@@ -163,6 +169,7 @@ class LoginScreenState extends State<LoginScreen> {
                                 _passwordController.text.toString(),
                                 context,
                               );
+                          
                         }
                       },
                     ),
@@ -195,10 +202,9 @@ class LoginScreenState extends State<LoginScreen> {
                             handleSignIn();
                           },
                           child: const Text(
-                            "Google Sign Up",
-                            style: TextStyle(
-                              color: AppColors.theme1Color,
-                            ),
+                            "Sign in with Google",
+                            style: TextStyle(color: Colors.blue),
+                            //
                           ),
                         ),
                       ],

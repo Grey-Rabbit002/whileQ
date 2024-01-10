@@ -241,7 +241,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                 children: [
                   Padding(padding: EdgeInsets.all(5)),
                   Text(
-                    'Web Development',
+                    'Stock Market',
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -315,7 +315,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                 children: [
                   Padding(padding: EdgeInsets.all(5)),
                   Text(
-                    'App Development',
+                    'Heritage of India',
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
