@@ -38,7 +38,7 @@ void main() async {
   //   ],
   // );
   _initializeFirebase();
-  // await APIs.getSelfInfo();
+  await APIs.getSelfInfo();
   // refreshOnstart();
   Provider.debugCheckInvalidValueType = null;
   runApp(const river.ProviderScope(child: MyApp()));
