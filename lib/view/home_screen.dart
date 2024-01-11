@@ -1,6 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:while_app/resources/components/message/apis.dart';
 import 'package:while_app/view/create_screen.dart';
 import 'package:while_app/view/feed_screen.dart';
 import 'package:while_app/view/profile/user_profile_screen.dart';
@@ -23,13 +23,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     });
   }
 
-  @override
-  void initState() {
-    // listUsersFollowers();
-    APIs.getSelfInfo();
-    super.initState();
-  }
-
   final List<Widget> _screens = [
     const FeedScreen(),
     const CreateScreen(),
@@ -40,27 +33,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //final currentTheme = ref.watch(themeNotifierProvider);
-
     return Scaffold(
-      body: _screens[_currentIndex], // replace with _currentIndex
+      body: _screens[_currentIndex],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
+        //clipBehavior: Clip.antiAlias,
         height: 50,
-        // shape: const CircularNotchedRectangle(),
-        //color: currentTheme.primaryColor,
+        //shape: const AutomaticNotchedShape(BeveledRectangleBorder()),
+        color: Colors.black,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             IconButton(
               onPressed: () {
                 _onTabTapped(0);
               },
-              icon: const Icon(
-                Icons.home,
+              icon: Icon(
+                _currentIndex == 0 ? Icons.home : Icons.home_outlined,
                 size: 30,
                 color: Colors.white,
               ),
@@ -69,27 +60,32 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               onPressed: () {
                 _onTabTapped(1);
               },
-              icon: const Icon(
-                Icons.movie_creation_outlined,
+              icon: Icon(
+                _currentIndex == 1
+                    ? Icons.add_circle
+                    : Icons.add_circle_outline_sharp,
                 size: 30,
                 color: Colors.white,
               ),
             ),
             IconButton(
-                iconSize: 65,
+                // iconSize: 25,
                 onPressed: () {
                   _onTabTapped(2);
                 },
-                icon: Image.asset(
-                  'assets/whilelogowithoutname.png',
-                  fit: BoxFit.fill,
+                icon: const Icon(
+                  CupertinoIcons.infinite,
+                  size: 30,
+                  color: Colors.white,
                 )),
             IconButton(
               onPressed: () {
                 _onTabTapped(3);
               },
-              icon: const Icon(
-                Icons.message,
+              icon: Icon(
+                _currentIndex == 3
+                    ? CupertinoIcons.text_bubble_fill
+                    : CupertinoIcons.text_bubble,
                 size: 30,
                 color: Colors.white,
               ),
@@ -98,8 +94,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               onPressed: () {
                 _onTabTapped(4);
               },
-              icon: const Icon(
-                Icons.account_circle,
+              icon: Icon(
+                _currentIndex == 4
+                    ? Icons.account_circle
+                    : Icons.account_circle_outlined,
                 size: 30,
                 color: Colors.white,
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:while_app/view/profile/creator_profile_widget.dart';
 import 'package:while_app/view/profile/profile_data_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -30,10 +31,11 @@ class ProfileScreen extends StatelessWidget {
       ),
     ];
 
-    return //SafeArea(child: 
-      Scaffold(
-        backgroundColor: Colors.black,
-        body: DefaultTabController(
+    return //SafeArea(child:
+        Scaffold(
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: DefaultTabController(
           length: 3,
           child: NestedScrollView(
             headerSliverBuilder: (context, _) {
@@ -45,10 +47,10 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ];
             },
-            body: const Column(
+            body: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Material(
+                const Material(
                   color: Colors.black,
                   child: TabBar(
                     padding: EdgeInsets.all(0),
@@ -59,9 +61,17 @@ class ProfileScreen extends StatelessWidget {
                 Expanded(
                   child: TabBarView(
                     children: [
-                      Center(child: Text("Become a Content creator", style: TextStyle(color: Colors.white),)),
-                      Center(child: Text("Become a Mentor", style: TextStyle(color: Colors.white),)),
-                      Center(child: Text("Become a Freelancer", style: TextStyle(color: Colors.white),)),
+                      Center(child: FirebaseImageScreen()),
+                      const Center(
+                          child: Text(
+                        "Become a Mentor",
+                        style: TextStyle(color: Colors.white),
+                      )),
+                      const Center(
+                          child: Text(
+                        "Become a Freelancer",
+                        style: TextStyle(color: Colors.white),
+                      )),
                     ],
                   ),
                 ),
@@ -69,6 +79,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ),
-      );
+      ),
+    );
   }
 }
