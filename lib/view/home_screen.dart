@@ -69,15 +69,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             ),
             IconButton(
-<<<<<<< HEAD
-                iconSize: 100,
-                onPressed: () {
-                  _onTabTapped(2);
-                },
-                icon: Image.asset(
-                  'assets/while.png',
-                  fit: BoxFit.cover,
-=======
                 // iconSize: 25,
                 onPressed: () {
                   _onTabTapped(2);
@@ -86,7 +77,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   CupertinoIcons.infinite,
                   size: 30,
                   color: Colors.white,
->>>>>>> 31e385512f9d2a432b353d6455bd33fdfda0b9ca
                 )),
             IconButton(
               onPressed: () {

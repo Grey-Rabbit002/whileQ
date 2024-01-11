@@ -11,20 +11,16 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User?>();
     print(firebaseUser);
-    final googlesignin = context.read<FirebaseAuthMethods>().googleSignIn;
+    // final googlesignin = context.read<FirebaseAuthMethods>().googleSignIn;
     print(firebaseUser == null);
     if (firebaseUser != null) {
-      print(googlesignin);
-      return googlesignin ? CircularProgressIndicator() : HomeScreen();
+      // print(googlesignin);
+      return HomeScreen();
     } else {
       //return const MyPhone();
-      return Consumer<FirebaseAuthMethods>(
-        builder: (context, value, child) {
-          // return Logi();
-          print(googlesignin);
+   
           return LoginScreen();
-        },
-      );
+
     }
   }
 }

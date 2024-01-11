@@ -11,15 +11,9 @@ import 'package:while_app/resources/components/text_button.dart';
 import 'package:while_app/resources/components/text_container_widget.dart';
 import 'package:while_app/utils/routes/routes_name.dart';
 import 'package:while_app/utils/utils.dart';
-<<<<<<< HEAD
-import 'package:while_app/view_model/wrapper/wrapper.dart';
-import '../../repository/firebase_repository.dart';
-// import 'package:riverpod/riverpod.dart' as river;
-=======
 
 import '../../repository/firebase_repository.dart';
 import '../../resources/components/header_widget.dart';
->>>>>>> 31e385512f9d2a432b353d6455bd33fdfda0b9ca
 
 GoogleSignIn _googleSignIn = GoogleSignIn(scopes: <String>[
   'email',
@@ -225,20 +219,6 @@ class LoginScreenState extends State<LoginScreen> {
                           style: const ButtonStyle(
                             padding: MaterialStatePropertyAll(EdgeInsets.zero),
                           ),
-<<<<<<< HEAD
-                        ),
-                        SizedBox(
-                          width: h * .02,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            handleSignIn();
-                          },
-                          child: const Text(
-                            "Sign in with Google",
-                            style: TextStyle(color: Colors.blue),
-                            //
-=======
                           child: Text(
                             "Signup",
                             style: Theme.of(context)
@@ -249,7 +229,6 @@ class LoginScreenState extends State<LoginScreen> {
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                 ),
->>>>>>> 31e385512f9d2a432b353d6455bd33fdfda0b9ca
                           ),
                         ),
                       ],
