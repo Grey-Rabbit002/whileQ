@@ -70,17 +70,11 @@ class FirebaseAuthMethods extends ChangeNotifier {
       String email, String password, BuildContext context) async {
     try {
       await FirebaseAuth.instance.currentUser?.reload();
-      print("trying sign in");
+      // print("trying sign in");
       // print(_auth.currentUser!.emailVerified);
-      print(_auth.currentUser!.emailVerified);
-
-      if (!_auth.currentUser!.emailVerified) {
-        Utils.snackBar("User not verified mail", context);
-        await _auth.currentUser!.sendEmailVerification();
-      } else {
+      // print(_auth.currentUser!.emailVerified);
         await _auth.signInWithEmailAndPassword(
             email: email, password: password);
-      }
     } on FirebaseAuthException catch (e) {
       Utils.snackBar(e.message!, context);
     }
