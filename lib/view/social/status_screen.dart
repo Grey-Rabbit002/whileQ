@@ -129,8 +129,8 @@ class StatusScreenState extends State<StatusScreenn> {
                                       child: Icon(CupertinoIcons.person)),
                             ),
                           ),
-                          title: Text(person['userName'], style: TextStyle(color: Colors.white),),
-                          subtitle: Text(formattedDate, style: TextStyle(color: Colors.white),),
+                          title: Text(person['userName'], style: const TextStyle(color: Colors.white),),
+                          subtitle: Text(formattedDate, style: const TextStyle(color: Colors.white),),
                         ),
                         Divider(
                           color: Colors.grey.shade800,

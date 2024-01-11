@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
-import 'package:while_app/local_db/models/db_helper.dart';
 import 'package:while_app/main.dart';
 import 'package:while_app/resources/components/message/apis.dart';
 import 'package:while_app/resources/components/message/helper/dialogs.dart';
@@ -164,11 +162,11 @@ class StoryScreenState extends State<StoryScreen>
                         ),
                         title: Text(
                           person['name'],
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                         subtitle: Text(
                           person['email'],
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                         trailing: ElevatedButton(
                           style: TextButton.styleFrom(
@@ -289,11 +287,11 @@ class StoryScreenState extends State<StoryScreen>
                         ),
                         title: Text(
                           page['name'],
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                         subtitle: Text(
                           page['domain'],
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                         trailing: ElevatedButton(
                           style: TextButton.styleFrom(

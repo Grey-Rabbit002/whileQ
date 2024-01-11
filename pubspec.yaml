@@ -82,6 +82,8 @@ dependencies:
   connectivity: 
   # gradient_text:
   flutter_notification_channel:
+  flutter_inner_shadow: ^0.0.1
+  flutter_inset_box_shadow: ^1.0.8
   
 
 dev_dependencies:

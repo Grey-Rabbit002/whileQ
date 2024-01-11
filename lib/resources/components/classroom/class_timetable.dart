@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TimeTable extends StatelessWidget {
+  TimeTable({super.key});
   final classTime = ['9:10-10', '11-12'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,14 +48,14 @@ class TimeTable extends StatelessWidget {
             ),
             DataRow(
               cells: <DataCell>[
-                DataCell(Text('Wednesday')),
+                const DataCell(Text('Wednesday')),
                 DataCell(
-                  Text('22'),
+                  const Text('22'),
                   onTap: () {
                     _showDialog(context, 'Wednesday');
                   },
                 ),
-                DataCell(Text('Chicago')),
+                const DataCell(Text('Chicago')),
               ],
             ),
             const DataRow(
@@ -103,7 +105,7 @@ class TimeTable extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Close'),
+              child: const Text('Close'),
             ),
           ],
         );

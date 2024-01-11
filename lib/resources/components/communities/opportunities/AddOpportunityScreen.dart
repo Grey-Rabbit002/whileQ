@@ -4,7 +4,7 @@ import 'package:while_app/resources/components/message/models/community_user.dar
 import 'package:while_app/resources/components/communities/opportunities/community_detail_opportunities_widget.dart';
 import 'package:uuid/uuid.dart';
 
-final uuid = Uuid();
+const uuid = Uuid();
 
 class AddOpportunityScreen extends StatefulWidget {
   const AddOpportunityScreen({super.key, required this.user});

@@ -79,7 +79,7 @@ class _ChatCommunityCardState extends ConsumerState<ChatCommunityCard> {
 
                 //user name
                 title: Text(widget.user.name,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 ),
 
                 //last message
@@ -90,7 +90,7 @@ class _ChatCommunityCardState extends ConsumerState<ChatCommunityCard> {
                             : _message!.msg
                         : widget.user.about,
                     maxLines: 1,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                     ),
 
                 //last message time

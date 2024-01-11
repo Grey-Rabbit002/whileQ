@@ -1,11 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:while_app/resources/components/classroom/classroom_home_screen.dart';
-import 'package:while_app/theme/pallete.dart';
-import 'package:chewie/chewie.dart';
-import 'package:video_player/video_player.dart';
-import 'package:while_app/view/testing_screen.dart';
 import 'package:while_app/view/video_player_screen.dart';
 
 class VideoItem {
@@ -126,7 +121,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 //padding: EdgeInsets.all(15),
                 height: 230,
                 //color: Colors.amber,
@@ -139,8 +134,8 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                     enableInfiniteScroll: true,
                     reverse: false,
                     autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 3),
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlayInterval: const Duration(seconds: 3),
+                    autoPlayAnimationDuration: const Duration(milliseconds: 800),
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     onPageChanged: (index, reason) {
@@ -152,8 +147,8 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                       builder: (BuildContext context) {
                         return Container(
                           width: MediaQuery.of(context).size.width,
-                          margin: EdgeInsets.symmetric(horizontal: 5.0),
-                          decoration: BoxDecoration(
+                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                          decoration: const BoxDecoration(
                             color: Colors.black,
                           ),
                           child: Image.network(item, fit: BoxFit.cover),
@@ -165,28 +160,28 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
               ),
               Row(
                 children: [
-                  Padding(padding: EdgeInsets.all(5)),
-                  Text(
+                  const Padding(padding: EdgeInsets.all(5)),
+                  const Text(
                     'Trending',
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_forward_ios_rounded,
                         color: Colors.white,
                       ))
                 ],
               ),
-              Container(
+              SizedBox(
                 height: 150,
                 child: GridView.builder(
                   scrollDirection: Axis.horizontal,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
                     crossAxisSpacing: 4.0,
                     mainAxisSpacing: 3.0,
@@ -226,7 +221,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 videoItems[index].title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 16.0, color: Colors.white),
                               ),
                             ),
@@ -239,28 +234,28 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
               ),
               Row(
                 children: [
-                  Padding(padding: EdgeInsets.all(5)),
-                  Text(
-                    'Stock Market',
+                  const Padding(padding: EdgeInsets.all(5)),
+                  const Text(
+                    'Web Development',
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_forward_ios_rounded,
                         color: Colors.white,
                       ))
                 ],
               ),
-              Container(
+              SizedBox(
                 height: 150,
                 child: GridView.builder(
                   scrollDirection: Axis.horizontal,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
                     crossAxisSpacing: 4.0,
                     mainAxisSpacing: 3.0,
@@ -300,7 +295,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 videoItems[index].title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 16.0, color: Colors.white),
                               ),
                             ),
@@ -313,28 +308,28 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
               ),
               Row(
                 children: [
-                  Padding(padding: EdgeInsets.all(5)),
-                  Text(
-                    'Heritage of India',
+                  const Padding(padding: EdgeInsets.all(5)),
+                  const Text(
+                    'App Development',
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_forward_ios_rounded,
                         color: Colors.white,
                       ))
                 ],
               ),
-              Container(
+              SizedBox(
                 height: 150,
                 child: GridView.builder(
                   scrollDirection: Axis.horizontal,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
                     crossAxisSpacing: 4.0,
                     mainAxisSpacing: 3.0,
@@ -374,7 +369,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 videoItems[index].title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 16.0, color: Colors.white),
                               ),
                             ),
@@ -387,28 +382,28 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
               ),
               Row(
                 children: [
-                  Padding(padding: EdgeInsets.all(5)),
-                  Text(
+                  const Padding(padding: EdgeInsets.all(5)),
+                  const Text(
                     'Machine Learning',
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_forward_ios_rounded,
                         color: Colors.white,
                       ))
                 ],
               ),
-              Container(
+              SizedBox(
                 height: 150,
                 child: GridView.builder(
                   scrollDirection: Axis.horizontal,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
                     crossAxisSpacing: 4.0,
                     mainAxisSpacing: 3.0,
@@ -448,7 +443,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 videoItems[index].title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 16.0, color: Colors.white),
                               ),
                             ),
@@ -461,28 +456,28 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
               ),
               Row(
                 children: [
-                  Padding(padding: EdgeInsets.all(5)),
-                  Text(
+                  const Padding(padding: EdgeInsets.all(5)),
+                  const Text(
                     'Management',
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_forward_ios_rounded,
                         color: Colors.white,
                       ))
                 ],
               ),
-              Container(
+              SizedBox(
                 height: 150,
                 child: GridView.builder(
                   scrollDirection: Axis.horizontal,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
                     crossAxisSpacing: 4.0,
                     mainAxisSpacing: 3.0,
@@ -522,7 +517,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 videoItems[index].title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 16.0, color: Colors.white),
                               ),
                             ),

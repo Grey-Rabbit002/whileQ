@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:while_app/main.dart';
 import '../message/apis.dart';
 import '../message/helper/dialogs.dart';
 import '../message/models/community_user.dart';

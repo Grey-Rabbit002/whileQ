@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:while_app/theme/pallete.dart';
 
 import '../colors.dart';
 
@@ -34,7 +33,7 @@ class CreateContainer extends ConsumerWidget {
             leading: Text(
               text,
               style:
-                  TextStyle(fontSize: 15),
+                  const TextStyle(fontSize: 15),
             ),
             trailing: Container(
               decoration: BoxDecoration(

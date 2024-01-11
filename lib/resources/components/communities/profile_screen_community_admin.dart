@@ -32,7 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String? _image;
 
   // Initialize the TextEditingController in your state
-  TextEditingController _textFieldController = TextEditingController();
+  final TextEditingController _textFieldController = TextEditingController();
 
 // Later, when you want to access the edited text:
 

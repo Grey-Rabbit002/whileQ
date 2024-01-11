@@ -42,22 +42,22 @@ void _hardQuiz(BuildContext context) {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         children: [
           GestureDetector(
             onTap: () => _easyQuiz(context),
-            child: QuizTile(level: 'Easy', gradientColors: [Colors.blue, Colors.green])),
+            child: const QuizTile(level: 'Easy', gradientColors: [Colors.blue, Colors.green])),
           GestureDetector(
             onTap: () => _mediumQuiz(context),
-            child: QuizTile(level: 'Medium', gradientColors: [Colors.orange, Colors.yellow])),
+            child: const QuizTile(level: 'Medium', gradientColors: [Colors.orange, Colors.yellow])),
           GestureDetector(
             onTap: () => _hardQuiz(context),
-            child: QuizTile(level: 'Hard', gradientColors: [Colors.red, Colors.purple])),
+            child: const QuizTile(level: 'Hard', gradientColors: [Colors.red, Colors.purple])),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _createQuiz(context),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
     ),
       );
   }
@@ -67,13 +67,13 @@ class QuizTile extends StatelessWidget {
   final String level;
   final List<Color> gradientColors;
 
-  QuizTile({required this.level, required this.gradientColors});
+  const QuizTile({super.key, required this.level, required this.gradientColors});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 150,
-      margin: EdgeInsets.symmetric(vertical: 10.0),
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: gradientColors,
@@ -86,14 +86,14 @@ class QuizTile extends StatelessWidget {
             color: Colors.black.withOpacity(0.2),
             spreadRadius: 2,
             blurRadius: 5,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
       child: Center(
         child: Text(
           level,
-          style: TextStyle(fontSize: 24, color: Colors.white),
+          style: const TextStyle(fontSize: 24, color: Colors.white),
         ),
       ),
     );

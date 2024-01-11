@@ -1,9 +1,6 @@
-import 'dart:convert';
-import 'dart:ffi';
 import 'dart:typed_data';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:while_app/main.dart';
 
@@ -110,7 +107,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
               ),
               title: Text(
                 widget.user.name,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
               subtitle: Text(
                 _message != null
@@ -119,7 +116,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
                         : _message!.msg
                     : widget.user.about,
                 maxLines: 1,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
               trailing: _message == null
                   ? null

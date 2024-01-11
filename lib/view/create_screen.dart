@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart' as river;
 import 'package:provider/provider.dart';
 import 'package:while_app/resources/colors.dart';
 import 'package:while_app/resources/components/create_container.dart';
-import 'package:while_app/theme/pallete.dart';
 import 'package:while_app/view_model/post_provider.dart';
 import 'package:while_app/view_model/reel_controller.dart';
 
@@ -24,9 +23,9 @@ class _CreateScreenState extends river.ConsumerState<CreateScreen> {
       padding: const EdgeInsets.only(top: 1),
       child: Container(
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             color: Colors.black,
-            borderRadius: const BorderRadius.only(
+            borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20), topRight: Radius.circular(20))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
