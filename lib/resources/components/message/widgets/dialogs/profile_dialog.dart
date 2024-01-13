@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:while_app/resources/components/message/models/community_user.dart';
+// import 'package:while_app/resources/components/message/models/community_user.dart';
 import 'package:while_app/view/profile/friend_profile_screen%20copy.dart';
-import 'package:while_app/view_model/providers/community_provider.dart';
+// import 'package:while_app/view_model/providers/community_provider.dart';
 
 import '../../../../../main.dart';
 import '../../models/chat_user.dart';
@@ -59,7 +59,7 @@ class ProfileDialog extends StatelessWidget {
                   top: 6,
                   child: Consumer(
                     builder: (context, ref, child) {
-                      final CommunityUser data = ref.watch(communityProvider);
+                      // final CommunityUser data = ref.watch(communityProvider);
                       return MaterialButton(
                         onPressed: () {
                           // for hiding image dialog

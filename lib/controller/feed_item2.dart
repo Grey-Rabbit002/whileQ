@@ -66,7 +66,7 @@ class _FeedItem2State extends State<FeedItem2> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.width,

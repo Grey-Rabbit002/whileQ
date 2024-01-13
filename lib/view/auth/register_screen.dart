@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:while_app/resources/colors.dart';
-import 'package:while_app/resources/components/header_widget.dart';
-import 'package:while_app/resources/components/password_container_widget.dart';
 import 'package:while_app/resources/components/round_button.dart';
 import 'package:while_app/resources/components/text_container_widget.dart';
 import 'package:while_app/utils/utils.dart';
 import 'package:while_app/view/auth/login_screen.dart';
-import 'package:while_app/view_model/wrapper/wrapper.dart';
 import '../../repository/firebase_repository.dart';
 
 class SignUpScreen extends StatelessWidget {

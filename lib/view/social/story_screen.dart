@@ -53,7 +53,7 @@ class StoryScreenState extends State<StoryScreen>
       final bytes = data.buffer.asUint8List();
       return base64Encode(bytes);
     } catch (error) {
-      print("Error getting bytes: $error");
+      // print("Error getting bytes: $error");
       return null;
     }
   }
@@ -174,10 +174,10 @@ class StoryScreenState extends State<StoryScreen>
                               backgroundColor:
                                   const Color.fromARGB(255, 235, 235, 235)),
                           onPressed: () async {
-                            final img = await _getBytes(person['image']) ??
+                            // final img = await _getBytes(person['image']) ??
                                 await _getBytes(
                                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRnQaBFUhEW2hDDsYP_Skq-wt-XGF9mek7YA&usqp=CAU');
-                            print(img);
+                            // print(img);
                             // await DBHelper()
                             //     .addDataLocally(
                             //   wholeData: jsonEncode({

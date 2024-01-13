@@ -67,6 +67,8 @@ class Settings extends StatelessWidget {
                             context
                                 .read<FirebaseAuthMethods>()
                                 .signout(context);
+
+
                             Navigator.of(context).pop();
                           },
                           text: "Logout"))

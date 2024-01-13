@@ -9,6 +9,7 @@ class AddClassScreen {
   void addCommunityDialog(BuildContext context) {
     String name = '';
     String type = '';
+    // ignore: unused_local_variable
     String domain = '';
     String about = '';
 

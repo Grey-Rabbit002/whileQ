@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:while_app/view/home_screen.dart';
 import 'package:while_app/view/auth/login_screen.dart';
+// import 'package:while_app/resources/components/message/apis.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({super.key});
@@ -10,17 +11,15 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User?>();
-    print(firebaseUser);
-    // final googlesignin = context.read<FirebaseAuthMethods>().googleSignIn;
-    print(firebaseUser == null);
-    if (firebaseUser != null) {
-      // print(googlesignin);
-      return HomeScreen();
-    } else {
-      //return const MyPhone();
-   
-          return LoginScreen();
-
+    try {
+      if (firebaseUser != null) {
+        // print(APIs.me.email);
+        return const HomeScreen();
+      } else {
+        return const LoginScreen();
+      }
+    } catch (e) {
+      rethrow;
     }
   }
 }

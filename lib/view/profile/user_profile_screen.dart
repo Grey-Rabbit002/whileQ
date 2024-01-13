@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:while_app/view/profile/creator_profile_widget.dart';
 import 'package:while_app/view/profile/profile_data_widget.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
   Widget build(BuildContext context) {
+    // print(APIs.me.email);
     const tabBarIcons = [
       Tab(
         icon: Icon(
