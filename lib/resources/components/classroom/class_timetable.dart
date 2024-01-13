@@ -99,7 +99,7 @@ class TimeTable extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Time for $day'),
-          content: Text(classTime[0] ?? 'No time specified'),
+          content: Text(classTime[0]),
           actions: <Widget>[
             TextButton(
               onPressed: () {

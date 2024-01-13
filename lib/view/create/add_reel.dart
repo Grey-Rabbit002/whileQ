@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:video_compress/video_compress.dart';
@@ -12,7 +11,6 @@ import 'package:while_app/resources/components/text_container_widget.dart';
 import 'package:while_app/resources/components/video_player.dart';
 import 'package:http/http.dart' as http;
 import 'package:while_app/utils/utils.dart';
-import 'dart:async';
 
 class AddReel extends StatefulWidget {
   final String video;
@@ -59,7 +57,7 @@ class _AddReelState extends State<AddReel> {
     Dialogs.showSnackbar(context, vid.path.split(".").last);
     // DateTime now = DateTime.now();
     // File video = _compressVideo(path);
-    File video = File(path);
+    // File video = File(path);
     // var stream = http.ByteStream(video.openRead().cast());
     // var length = video.lengthSync();
     // var uri = Uri.parse('http://13.233.151.213:3000/reels');
@@ -198,7 +196,7 @@ class _AddReelState extends State<AddReel> {
     // await Future.value(uploadTask);
 
     // final newUrl = await storageRef.getDownloadURL();
-    final user = FirebaseAuth.instance.currentUser!;
+    // final user = FirebaseAuth.instance.currentUser!;
   }
 
   @override

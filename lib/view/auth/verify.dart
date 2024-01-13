@@ -1,15 +1,12 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
-class MyVerify extends StatefulWidget {
+class MyVerify extends StatelessWidget {
    MyVerify({Key? key,required this.verifyId}) : super(key: key);
   String verifyId;
 
-  @override
-  State<MyVerify> createState() => _MyVerifyState();
-}
-
-class _MyVerifyState extends State<MyVerify> {
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
@@ -89,7 +86,7 @@ class _MyVerifyState extends State<MyVerify> {
                 focusedPinTheme: focusedPinTheme,
                 submittedPinTheme: submittedPinTheme,
                 showCursor: true,
-                onCompleted: (pin) => print(pin),
+                onCompleted: (pin){},
               ),
               const SizedBox(
                 height: 20,

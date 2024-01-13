@@ -59,8 +59,8 @@ class APIs {
     await fMessaging.getToken().then((t) {
       if (t != null) {
         me.pushToken = t;
-        log('Push Token: $t');
-        print('Push Token: $t');
+        // log('Push Token: $t');
+        // print('Push Token: $t');
       }
     });
 
@@ -734,6 +734,7 @@ class APIs {
 
   //comunity participants info
   static getCommunityInfos(CommunityUser community) async {
+    // ignore: unused_local_variable
     CommunityUser ds;
     firestore
         .collection('communities')

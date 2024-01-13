@@ -46,7 +46,7 @@ class DBHelper {
   final db = await database;
   final result = await db.query("LocalTable");
 
-  print("LocalTable Data:");
+  // print("LocalTable Data:");
 
   for (var row in result) {
     print("userId: ${row['userId']}, DummyData: ${row['DummyData']}");

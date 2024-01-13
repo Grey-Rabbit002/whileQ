@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:while_app/static_data.dart/feed_data.dart';
 import 'package:while_app/view/video_player_screen.dart';
 
 class VideoItem {
@@ -23,101 +24,15 @@ class FeedScreen extends ConsumerStatefulWidget {
 }
 
 class _FeedScreenState extends ConsumerState<FeedScreen> {
-  // void themeToggler(WidgetRef ref) {
-  //   ref.read(themeNotifierProvider.notifier).toggleTheme();
-  // }
-
-  final List<VideoItem> videoItems = [
-    VideoItem(
-      videoUrl:
-          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-      title: "BigBuckBunny",
-      thumbnailUrl: "https://picsum.photos/200/300",
-    ),
-    VideoItem(
-      videoUrl:
-          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-      title: "ElephantsDream",
-      thumbnailUrl: "https://picsum.photos/200/300",
-    ),
-    VideoItem(
-      videoUrl:
-          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-      title: "ElephantsDream",
-      thumbnailUrl: "https://picsum.photos/200/300",
-    ),
-    VideoItem(
-      videoUrl:
-          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-      title: "ElephantsDream",
-      thumbnailUrl: "https://picsum.photos/200/300",
-    ),
-    VideoItem(
-      videoUrl:
-          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-      title: "ElephantsDream",
-      thumbnailUrl: "https://picsum.photos/200/300",
-    ),
-    VideoItem(
-      videoUrl:
-          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-      title: "ElephantsDream",
-      thumbnailUrl: "https://picsum.photos/200/300",
-    )
-    // Add more video items as needed
-  ];
-
-  final List<String> images = [
-    'https://picsum.photos/200/300',
-    'https://picsum.photos/300/300',
-    'https://picsum.photos/200/310',
-    'https://via.placeholder.com/300',
-  ];
-
   @override
   Widget build(BuildContext context) {
     //final currentTheme = ref.watch(themeNotifierProvider);
-
+    
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: Colors.black,
         ),
-        // appBar: AppBar(
-        //   //backgroundColor: currentTheme.scaffoldBackgroundColor,
-        //   backgroundColor: Colors.black,
-        //   elevation: 0.0,
-        //   actions: [
-        //     Switch.adaptive(
-        //       value: ref.watch(themeNotifierProvider.notifier).mode ==
-        //           ThemeMode.light,
-        //       onChanged: (value) => themeToggler(ref),
-        //     ),
-        //     // IconButton(
-        //     //   onPressed: () {
-        //     //     Navigator.of(context).push(
-        //     //       MaterialPageRoute(
-        //     //         builder: (context) => const ClassroomScreen(),
-        //     //       ),
-        //     //     );
-        //     //   },
-        //     //   icon: const Icon(
-        //     //     Icons.menu_book,
-        //     //     color: Colors.white,
-        //     //   ),
-        //     // ),
-        //     // IconButton(
-        //     //     onPressed: () {
-        //     //       Navigator.of(context).push(MaterialPageRoute(
-        //     //         builder: (context) => TestScreen(),
-        //     //       ));
-        //     //     },
-        //     //     icon: const Icon(
-        //     //       Icons.abc_outlined,
-        //     //       color: Colors.white,
-        //     //     ))
-        //   ],
-        // ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -135,7 +50,8 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                     reverse: false,
                     autoPlay: true,
                     autoPlayInterval: const Duration(seconds: 3),
-                    autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     onPageChanged: (index, reason) {

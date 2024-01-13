@@ -1,13 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:while_app/resources/components/message/apis.dart';
 import 'package:while_app/resources/components/message/models/chat_user.dart';
-
-// import 'package:while_app/utils/snackbar.dart';
 import '../utils/utils.dart';
 
 class FirebaseAuthMethods extends ChangeNotifier {
@@ -73,8 +71,7 @@ class FirebaseAuthMethods extends ChangeNotifier {
       // print("trying sign in");
       // print(_auth.currentUser!.emailVerified);
       // print(_auth.currentUser!.emailVerified);
-        await _auth.signInWithEmailAndPassword(
-            email: email, password: password);
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       Utils.snackBar(e.message!, context);
     }
@@ -122,7 +119,8 @@ class FirebaseAuthMethods extends ChangeNotifier {
             newUser.about =
                 'Hey I My name is ${newUser.name} , connect me at ${newUser.email}';
             log('/////as////${_auth.currentUser!.uid}');
-            APIs.createNewUser(newUser);
+            await APIs.createNewUser(newUser);
+            // await APIs.getSelfInfo();
           }
         }
       }
